@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Test extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['lot', 'brand', 'status'];
+
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

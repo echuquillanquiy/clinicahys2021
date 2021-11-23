@@ -41,10 +41,10 @@
                         <a href="{{ route('clientes') }}"> Empresas </a>
                     </li>
                     <li>
-                        <a href=""> Pruebas </a>
+                        <a href="{{ route('pruebas') }}"> Pruebas </a>
                     </li>
                     <li>
-                        <a href=""> Puestos </a>
+                        <a href="{{ route('puestos') }}"> Puestos </a>
                     </li>
                 </ul>
             </li>
@@ -59,7 +59,7 @@
                 </a>
                 <ul class="collapse submenu list-unstyled" id="app" data-parent="#topAccordion">
                     <li>
-                        <a href=""> Pacientes </a>
+                        <a href="{{ route('pacientes') }}"> Pacientes </a>
                     </li>
                     <li>
                         <a href=""> Ordenes </a>

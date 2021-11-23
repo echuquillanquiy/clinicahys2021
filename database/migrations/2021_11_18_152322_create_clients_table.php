@@ -19,9 +19,6 @@ class CreateClientsTable extends Migration
             $table->string('ruc')->unique();
             $table->string('name');
             $table->string('address');
-            $table->foreignId('department_id')->constrained();
-            $table->foreignId('province_id')->constrained();
-            $table->foreignId('district_id')->constrained();
 
             $table->timestamps();
         });

@@ -8,9 +8,4 @@ use Illuminate\Database\Eloquent\Model;
 class District extends Model
 {
     use HasFactory;
-
-    public function clients()
-    {
-        return $this->hasMany(Client::class);
-    }
 }

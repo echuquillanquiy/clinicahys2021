@@ -12,15 +12,15 @@ class CreatePatientsTable extends Migration
      * @return void
      */
     public function up()
-    {            $table->string('dni')->unique();
-        $table->string('name');
-        $table->string('lastname');
-        $table->date('birthday');
-        $table->string('age');
+    {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
 
-
+            $table->string('dni')->unique();
+            $table->string('name');
+            $table->string('lastname');
+            $table->date('birthday');
+            $table->string('age');
 
             $table->timestamps();
         });

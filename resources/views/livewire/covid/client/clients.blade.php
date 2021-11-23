@@ -46,10 +46,10 @@
                                 <td class="text-center">{{ $client->id }}</td>
                                 <td class="text-center">{{ $client->ruc }}</td>
                                 <td>{{ $client->name }}</td>
-                                <td>{{ $client->address }} - {{ $client->department->name }} - {{ $client->province->name }} - {{ $client->district->name }}</td>
+                                <td>{{ $client->address }}</td>
                                 <td class="text-center">
-                                    <a href="javascript:void(0);"  data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit text-warning fa-lg btn btn-outline-warning"></i></a>
-                                    <a href="javascript:void(0);"  data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt text-danger fa-lg btn btn-outline-danger"></i></a>
+                                    <a href="javascript:void(0);" wire:click="Edit({{ $client->id }})"  data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit text-warning fa-lg btn btn-outline-warning"></i></a>
+                                    <a href="javascript:void(0);"  onclick="Confirm('{{ $client->id }}', '{{ $client->orders->count() }}')" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt text-danger fa-lg btn btn-outline-danger"></i></a>
                                 </td>
                             </tr>
                         @endforeach
@@ -58,7 +58,47 @@
                 </div>
                 {{ $clients->links() }}
             </div>
-            @include('livewire.covid.form')
+            @include('livewire.covid.client.form')
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function (){
+        window.livewire.on('show-modal', msg => {
+            $('#theModal').modal('show')
+        });
+
+        window.livewire.on('client-added', msg => {
+            $('#theModal').modal('hide')
+        });
+
+        window.livewire.on('client-updated', msg => {
+            $('#theModal').modal('hide')
+        });
+    });
+
+    function Confirm(id, orders)
+    {
+        if (orders > 0){
+            swal('NO SE PUEDE ELIMINAR EL CLIENTE POR QUE TIENE ORDENES RELACIONADAS')
+            return;
+        }
+
+        swal({
+            title: 'CONFIRMAR',
+            text: '¿CONFIRMAS ELIMINAR EL REGISTRO?',
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonText: 'Cerrar',
+            cancelButtonColor: '#fff',
+            confirmButtonColor: '#3B3F5C',
+            confirmButtonText: 'Aceptar',
+        }).then(function (result){
+            if (result.value){
+                window.livewire.emit('deleteRow', id)
+                swal.close()
+            }
+        })
+    }
+</script>

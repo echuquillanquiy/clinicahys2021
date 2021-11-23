@@ -9,18 +9,11 @@ class Client extends Model
 {
     use HasFactory;
 
-    public function department()
+    protected $fillable = ['ruc', 'name', 'address'];
+
+    public function orders()
     {
-        return $this->belongsTo(Department::class);
+        return $this->hasMany(Order::class);
     }
 
-    public function province()
-    {
-        return $this->belongsTo(Province::class);
-    }
-
-    public function district()
-    {
-        return $this->belongsTo(District::class);
-    }
 }
