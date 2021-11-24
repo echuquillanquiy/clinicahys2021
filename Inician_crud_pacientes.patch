@@ -1,0 +1,41 @@
+Index: app/Http/Livewire/Covid/Patients.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/Http/Livewire/Covid/Patients.php b/app/Http/Livewire/Covid/Patients.php
+--- a/app/Http/Livewire/Covid/Patients.php	(revision f49f5510f361b3e377a363c197a657439d1a0ee5)
++++ b/app/Http/Livewire/Covid/Patients.php	(date 1637756027711)
+@@ -11,7 +11,7 @@
+ {
+     use WithPagination;
+ 
+-    public $pageTitle, $componentName, $search, $pageSelected, $selected_id, $dni, $name, $lastname, $birthday, $age = 0, $now;
++    public $pageTitle, $componentName, $search, $pageSelected, $selected_id, $dni, $name, $lastname, $birthday, $age, $now;
+ 
+     protected $paginationTheme = 'bootstrap';
+ 
+@@ -25,7 +25,9 @@
+         $this->pageTitle = "Listado";
+         $this->componentName = "Empresas Clientes";
+         $this->pageSelected = 10;
+-        $this->calcEdad();
++        $this->birthday = Carbon::now()->subYears(31)->format('Y-m-d');
++        $this->now = Carbon::now();
++        $this->age = Carbon::parse($this->birthday)->diffForHumans($this->now, $this->birthday);
+     }
+ 
+     public function render()
+@@ -56,12 +58,6 @@
+ 
+     }
+ 
+-    public function calcEdad()
+-    {
+-        $this->now = Carbon::now();
+-        $this->age = Carbon::parse($this->birthday)->diffInYears($this->now, $this->birthday);
+-    }
+-
+     public function resetUI()
+     {
+ 

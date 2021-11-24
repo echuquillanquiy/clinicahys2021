@@ -11,7 +11,7 @@ class Patients extends Component
 {
     use WithPagination;
 
-    public $pageTitle, $componentName, $search, $pageSelected, $selected_id, $dni, $name, $lastname, $birthday, $age = 0, $now;
+    public $pageTitle, $componentName, $search, $pageSelected, $selected_id, $dni, $name, $lastname, $birthday, $age, $now;
 
     protected $paginationTheme = 'bootstrap';
 
@@ -62,8 +62,97 @@ class Patients extends Component
         $this->age = Carbon::parse($this->birthday)->diffInYears($this->now, $this->birthday);
     }
 
+    public function Store()
+    {
+        $rules = [
+            'dni' => 'required|min:8|unique:patients',
+            'name' => 'required|min:3',
+            'lastname' => 'required|min:3',
+            'birthday' => 'required',
+            'age' => 'required'
+        ];
+
+        $messages = [
+            'dni.required' => 'El # DNI es requerido.',
+            'dni.min' => 'El dni debe tener mínimo 8 digítos.',
+            'dni.unique' => 'El DNI ya esta registrado.',
+            'name.required' => 'Los nombres son obligatorios.',
+            'name.min' => 'Los nombres deben tener minimo 3 carácteres.',
+            'lastname.required' => 'Los apellidos son obligatorios.',
+            'lastname.min' => 'Los apellidos debe tener minimo 3 carácteres.',
+            'birthday.required' => 'la fecha de nacimiento es obligatoria.',
+            'age.required' => 'La edad es obligatoria.'
+        ];
+
+        $this->validate($rules, $messages);
+
+        Patient::create([
+            'dni' => $this->dni,
+            'name' => $this->name,
+            'lastname' => $this->lastname,
+            'birthday' => $this->birthday,
+            'age' => $this->age
+        ]);
+
+        $this->resetUI();
+        $this->emit('patient-added', 'Paciente registrado');
+    }
+
+    public function Update()
+    {
+        $rules = [
+            'dni' => "required|min:8|unique:patients,dni,{$this->selected_id}",
+            'name' => 'required|min:3',
+            'lastname' => 'required|min:3',
+            'birthday' => 'required',
+            'age' => 'required'
+        ];
+
+        $messages = [
+            'dni.required' => 'El # DNI es requerido.',
+            'dni.min' => 'El dni debe tener mínimo 8 digítos.',
+            'dni.unique' => 'El DNI ya esta registrado.',
+            'name.required' => 'Los nombres son obligatorios.',
+            'name.min' => 'Los nombres deben tener minimo 3 carácteres.',
+            'lastname.required' => 'Los apellidos son obligatorios.',
+            'lastname.min' => 'Los apellidos debe tener minimo 3 carácteres.',
+            'birthday.required' => 'la fecha de nacimiento es obligatoria.',
+            'age.required' => 'La edad es obligatoria.'
+        ];
+
+        $this->validate($rules, $messages);
+
+        $patient = Patient::find($this->selected_id);
+
+        $patient->update([
+            'dni' => $this->dni,
+            'name' => $this->name,
+            'lastname' => $this->lastname,
+            'birthday' => $this->birthday,
+            'age' => $this->age
+        ]);
+
+        $this->resetUI();
+        $this->emit('patient-updated', 'Paciente registrado');
+    }
+
     public function resetUI()
     {
+        $this->dni = '';
+        $this->name = '';
+        $this->lastname = '';
+        $this->birthday = '';
+        $this->age = 0;
+        $this->selected_id = 0;
+    }
 
+    protected $listeners = ['deleteRow' => 'Destroy'];
+
+    public function Destroy(Patient $patient)
+    {
+        $patient->delete();
+
+        $this->resetUI();
+        $this->emit('client-deleted', 'Paciente eliminado');
     }
 }
