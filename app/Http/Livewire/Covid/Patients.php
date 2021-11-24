@@ -11,7 +11,7 @@ class Patients extends Component
 {
     use WithPagination;
 
-    public $pageTitle, $componentName, $search, $pageSelected, $selected_id, $dni, $name, $lastname, $birthday, $age, $now;
+    public $pageTitle, $componentName, $search, $pageSelected, $selected_id, $dni, $name, $lastname, $birthday, $age = 0, $now;
 
     protected $paginationTheme = 'bootstrap';
 
@@ -25,9 +25,7 @@ class Patients extends Component
         $this->pageTitle = "Listado";
         $this->componentName = "Empresas Clientes";
         $this->pageSelected = 10;
-        $this->birthday = Carbon::now()->subYears(31)->format('Y-m-d');
-        $this->now = Carbon::now();
-        $this->age = Carbon::parse($this->birthday)->diffForHumans($this->now, $this->birthday);
+        $this->calcEdad();
     }
 
     public function render()
@@ -56,6 +54,12 @@ class Patients extends Component
 
         $this->emit('show-modal', 'Show Modal');
 
+    }
+
+    public function calcEdad()
+    {
+        $this->now = Carbon::now();
+        $this->age = Carbon::parse($this->birthday)->diffInYears($this->now, $this->birthday);
     }
 
     public function resetUI()

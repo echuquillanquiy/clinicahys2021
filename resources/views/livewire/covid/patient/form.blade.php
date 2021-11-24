@@ -53,7 +53,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text"><i class="fas fa-calendar-alt"></i></div>
                 </div>
-                <input type="date" wire:model.lazy="birthday" class="form-control" >
+                <input type="date" wire:model.lazy="birthday" wire:keydown="calcEdad()" class="form-control" >
             </div>
             @error('birthday')
                 <span class="text-danger er">{{ $message }}</span>
