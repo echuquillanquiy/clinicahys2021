@@ -20,8 +20,12 @@ class CreateOrdersTable extends Migration
             $table->foreignId('patient_id')->constrained();
             $table->foreignId('position_id')->constrained();
             $table->foreignId('client_id')->constrained();
-            $table->string('')->
+            $table->unsignedBigInteger('subclient_id')->nullable();
             $table->foreignId('test_id')->constrained();
+
+            $table->foreign('subclient_id')->references('id')->on('clients');
+
+
 
             $table->timestamps();
         });

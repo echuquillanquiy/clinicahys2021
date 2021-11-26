@@ -12,7 +12,7 @@
 
 <script src="{{ asset('theme/plugins/sweetalerts/sweetalert2.min.js') }}"></script>
 <script src="{{ asset('theme/plugins/notification/snackbar/snackbar.min.js') }}"></script>
-
+<script src="{{ asset('theme/assets/js/components/ui-accordions.js') }}"></script>
 <script>
     function noty(msg, option = 1)
     {
@@ -20,8 +20,9 @@
             text: msg.toUpperCase(),
             actionText: 'CERRAR',
             actionTextColor: '#fff',
-            backgroundColor: option === 1 ? '#3b3f5c' : '#e7515a',
-            pos: 'top-right'
+            backgroundColor: option === 1 ? '#FF5733' : '#e7515a',
+            pos: 'top-center',
+            duration: 5000
         });
     }
 </script>

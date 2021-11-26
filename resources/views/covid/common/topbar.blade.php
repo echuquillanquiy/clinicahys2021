@@ -62,7 +62,7 @@
                         <a href="{{ route('pacientes') }}"> Pacientes </a>
                     </li>
                     <li>
-                        <a href=""> Ordenes </a>
+                        <a href="{{ route('ordenes') }}"> Ordenes </a>
                     </li>
                 </ul>
             </li>
@@ -77,10 +77,10 @@
                 </a>
                 <ul class="collapse submenu list-unstyled" id="app" data-parent="#topAccordion">
                     <li>
-                        <a href=""> Pacientes </a>
+                        <a href="{{ route('atenciones.medicina') }}"> Medicina </a>
                     </li>
                     <li>
-                        <a href=""> Ordenes </a>
+                        <a href="{{ route('atenciones.laboratorio') }}"> Laboratorio </a>
                     </li>
                 </ul>
             </li>

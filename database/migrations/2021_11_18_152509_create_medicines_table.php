@@ -16,13 +16,19 @@ class CreateMedicinesTable extends Migration
         Schema::create('medicines', function (Blueprint $table) {
             $table->id();
 
-            $table->text('orofaringe');
-            $table->text('cardiovascular');
-            $table->text('torax');
-            $table->text('dx');
-            $table->text('indications');
-            $table->text('observations');
+            $table->text('anam_description')->nullable();
+            $table->string('ant_personal')->nullable();
+            $table->string('ant_family')->nullable();
+            $table->text('orofaringe')->nullable();
+            $table->text('cardiovascular')->nullable();
+            $table->text('torax')->nullable();
+            $table->text('lab_result')->nullable();
+            $table->text('indications')->nullable();
+            $table->text('observations')->nullable();
             $table->enum('result', ['SI', 'NO'])->default('SI');
+            $table->string('temperature')->nullable();
+            $table->string('fc')->nullable();
+            $table->string('spo2')->nullable();
             $table->foreignId('order_id')->constrained();
             $table->foreignId('user_id')->constrained();
 
