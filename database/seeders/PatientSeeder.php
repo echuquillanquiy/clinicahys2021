@@ -19,7 +19,8 @@ class PatientSeeder extends Seeder
             'name' => 'RAUL EDUARDO',
             'lastname' => 'CHUQUILLANQUI YUPANQUI',
             'birthday' => '1990-09-20',
-            'age' => 31
+            'age' => 31,
+            'origin' => 'HUANCAYO'
         ]);
 
         Patient::factory(100)->create();

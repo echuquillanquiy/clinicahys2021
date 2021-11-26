@@ -8,6 +8,7 @@ use App\Http\Controllers\Covid\PatientController;
 use App\Http\Controllers\Covid\OrderController;
 use App\Http\Controllers\Covid\MedicineController;
 use App\Http\Controllers\Covid\LaboratoryController;
+use App\Http\Controllers\Covid\AuditoriaController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -22,3 +23,5 @@ Route::get('/medicine', [MedicineController::class, 'index'])->name('atenciones.
 Route::get('/laboratory', [LaboratoryController::class, 'index'])->name('atenciones.laboratorio');
 Route::get('/medicine/{medicine}/edit', [MedicineController::class, 'edit'])->name('form.medicina');
 Route::put('/medicine/{medicine}', [MedicineController::class, 'update'])->name('form-act');
+Route::get('/auditories', [AuditoriaController::class, 'index'])->name('auditoria');
+Route::get('/order/{order}/historia', [AuditoriaController::class, 'covidHistory'])->name('historia');

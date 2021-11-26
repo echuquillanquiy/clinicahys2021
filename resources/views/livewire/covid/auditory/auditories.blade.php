@@ -35,28 +35,27 @@
                             <th>SUBCONTRATA</th>
                             <th>NOMBRES Y APELLIDOS</th>
                             <th>LUGAR DE PROCEDENCIA</th>
-                            <th>USUARIO QUE REGISTRA RESULTADO</th>
                             <th>Resultados</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($medicines as $medicine)
+                        @foreach($orders as $order)
                             <tr>
-                                <td class="text-center">{{ $medicine->id }}</td>
-                                <td class="text-center">{{ $medicine->order->client->name }}</td>
-                                <td class="text-center">{{ $medicine->order->subclient->name  }}</td>
-                                <td class="text-center">{{ $medicine->order->patient->name }}, {{ $medicine->order->patient->lastname }}</td>
-                                <td class="text-center">{{ $medicine->order->patient->origin }}</td>
-                                <th class="text-center">{{ $medicine->order->user->name }}</th>
+                                <td class="text-center">{{ $order->id }}</td>
+                                <td class="text-center">{{ $order->client->name }}</td>
+                                <td class="text-center">{{ $order->subclient->name  }}</td>
+                                <td class="text-center">{{ $order->patient->name }}, {{ $order->patient->lastname }}</td>
+                                <td class="text-center">{{ $order->patient->origin }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('form.medicina', $medicine) }}" class="btn btn-outline-secondary"><i class="fas fa-file-medical"></i></a>
+                                    <a href="{{ route('form.medicina', $order->medicine->id) }}" class="btn btn-outline-secondary"><i class="fas fa-file-medical"></i></a>
+                                    <a href="{{ route('historia', $order) }}" class="btn btn-outline-success"><i class="fas fa-file-pdf"></i></a>
                                 </td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
                 </div>
-                {{ $medicines->links() }}
+                {{ $orders->links() }}
             </div>
         </div>
     </div>

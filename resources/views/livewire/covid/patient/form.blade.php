@@ -76,6 +76,20 @@
         </div>
     </div>
 
+    <div class="col-xl-6">
+        <div class="form-group">
+            <label>LUGAR DE PROCEDENCIA</label>
+            <select wire:model.lazy="origin" class="form-control">
+                <option value="HUANCAYO">HUANCAYO</option>
+                <option value="HUANCAVELICA">HUANCAVELICA</option>
+
+            </select>
+        </div>
+        @error('origin')
+        <span class="text-danger er">{{ $message }}</span>
+        @enderror
+    </div>
+
 </div>
 
 @include('common.modalFooter')

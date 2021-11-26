@@ -19,7 +19,8 @@ class PatientFactory extends Factory
             'name' => $this->faker->name(),
             'lastname' => $this->faker->lastName(),
             'birthday' => Carbon::now()->subYears(30),
-            'age' => $this->faker->randomNumber(3)
+            'age' => $this->faker->randomNumber(3),
+            'ORIGIN' => $this->faker->randomElement(['HUANCAYO', 'HUANCAVELICA'])
         ];
     }
 }

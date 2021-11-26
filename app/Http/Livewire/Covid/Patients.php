@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Livewire\Covid;
+use App\Models\Department;
 use App\Models\Patient;
 use Carbon\Carbon;
 use Livewire\WithPagination;
@@ -11,7 +12,7 @@ class Patients extends Component
 {
     use WithPagination;
 
-    public $pageTitle, $componentName, $search, $pageSelected, $selected_id, $dni, $name, $lastname, $birthday, $age, $now;
+    public $pageTitle, $componentName, $search, $pageSelected, $selected_id, $dni, $name, $lastname, $birthday, $age, $now, $origin;
 
     protected $paginationTheme = 'bootstrap';
 
@@ -50,6 +51,7 @@ class Patients extends Component
         $this->lastname = $patient->lastname;
         $this->birthday = $patient->birthday;
         $this->age = $patient->age;
+        $this->origin = $patient->origin;
         $this->selected_id = $patient->id;
 
         $this->emit('show-modal', 'Show Modal');
@@ -69,7 +71,8 @@ class Patients extends Component
             'name' => 'required|min:3',
             'lastname' => 'required|min:3',
             'birthday' => 'required',
-            'age' => 'required'
+            'age' => 'required',
+            'origin' => 'required|not_in:Elegir'
         ];
 
         $messages = [
@@ -81,7 +84,9 @@ class Patients extends Component
             'lastname.required' => 'Los apellidos son obligatorios.',
             'lastname.min' => 'Los apellidos debe tener minimo 3 carácteres.',
             'birthday.required' => 'la fecha de nacimiento es obligatoria.',
-            'age.required' => 'La edad es obligatoria.'
+            'age.required' => 'La edad es obligatoria.',
+            'origin.required' => 'El departamento de origen es requerido.',
+            'origin.not_in' => 'Elija una opción diferente e Elegir.'
         ];
 
         $this->validate($rules, $messages);
@@ -91,7 +96,8 @@ class Patients extends Component
             'name' => $this->name,
             'lastname' => $this->lastname,
             'birthday' => $this->birthday,
-            'age' => $this->age
+            'age' => $this->age,
+            'origin' => $this->origin
         ]);
 
         $this->resetUI();
@@ -105,7 +111,8 @@ class Patients extends Component
             'name' => 'required|min:3',
             'lastname' => 'required|min:3',
             'birthday' => 'required',
-            'age' => 'required'
+            'age' => 'required',
+            'origin' => 'required|not_in:Elegir'
         ];
 
         $messages = [
@@ -117,7 +124,9 @@ class Patients extends Component
             'lastname.required' => 'Los apellidos son obligatorios.',
             'lastname.min' => 'Los apellidos debe tener minimo 3 carácteres.',
             'birthday.required' => 'la fecha de nacimiento es obligatoria.',
-            'age.required' => 'La edad es obligatoria.'
+            'age.required' => 'La edad es obligatoria.',
+            'origin.required' => 'El departamento de origen es requerido.',
+            'origin.not_in' => 'Elija una opción diferente e Elegir.'
         ];
 
         $this->validate($rules, $messages);
@@ -129,11 +138,12 @@ class Patients extends Component
             'name' => $this->name,
             'lastname' => $this->lastname,
             'birthday' => $this->birthday,
-            'age' => $this->age
+            'age' => $this->age,
+            'origin' => $this->origin
         ]);
 
         $this->resetUI();
-        $this->emit('patient-updated', 'Paciente registrado');
+        $this->emit('patient-updated', 'Paciente Actualizado');
     }
 
     public function resetUI()
@@ -143,6 +153,7 @@ class Patients extends Component
         $this->lastname = '';
         $this->birthday = '';
         $this->age = 0;
+        $this->origin = 'Elegir';
         $this->selected_id = 0;
     }
 

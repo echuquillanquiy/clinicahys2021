@@ -39,6 +39,7 @@
                             <th>APELLIDOS</th>
                             <th>FECHA NACIMIENTO</th>
                             <th>EDAD</th>
+                            <th>LUGAR DE PROCEDENCIA</th>
                             <th class="text-center">Opciones</th>
                         </tr>
                         </thead>
@@ -51,6 +52,7 @@
                                 <td>{{ $patient->lastname }}</td>
                                 <td class="text-center">{{ $patient->birthday }}</td>
                                 <td class="text-center">{{ $patient->age }}</td>
+                                <td class="text-center">{{ $patient->origin }}</td>
                                 <td class="text-center">
                                     <a href="javascript:void(0);" wire:click="Edit({{ $patient->id }})"  data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit text-warning fa-lg btn btn-outline-warning"></i></a>
                                     <a href="javascript:void(0);"  onclick="Confirm('{{ $patient->id }}', '{{ $patient->orders->count() }}')" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt text-danger fa-lg btn btn-outline-danger"></i></a>
@@ -77,8 +79,9 @@
             $('#theModal').modal('hide')
         });
 
-        window.livewire.on('patient-updated', msg => {
+        window.livewire.on('patient-updated', Msg => {
             $('#theModal').modal('hide')
+            noty(Msg)
         });
     });
 

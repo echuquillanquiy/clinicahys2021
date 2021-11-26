@@ -21,6 +21,7 @@ class CreatePatientsTable extends Migration
             $table->string('lastname');
             $table->date('birthday');
             $table->string('age');
+            $table->string('origin');
 
             $table->timestamps();
         });

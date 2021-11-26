@@ -38,7 +38,7 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fas fa-user-circle"></i></div>
                                         </div>
-                                        <textarea type="text" name="ant_personal" class="form-control" rows="2" placeholder="ANTECEDENTE PERSONAL" autofocus></textarea>
+                                        <textarea type="text" name="ant_personal" class="form-control" rows="3" placeholder="ANTECEDENTE PERSONAL" autofocus>{{ $medicine->ant_personal }}</textarea>
                                     </div>
                                     @error('ant_personal')
                                         <span class="text-danger er">{{ $message }}</span>
@@ -50,7 +50,7 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fas fa-users"></i></div>
                                         </div>
-                                        <textarea type="text" name="ant_family" class="form-control" rows="2" placeholder="ANTECEDENTE FAMILIAR"></textarea>
+                                        <textarea type="text" name="ant_family" class="form-control" rows="3" placeholder="ANTECEDENTE FAMILIAR">{{ $medicine->ant_family }}</textarea>
                                     </div>
                                     @error('ant_family')
                                     <span class="text-danger er">{{ $message }}</span>
@@ -68,7 +68,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text"><i class="fas fa-file-archive"></i></div>
                                     </div>
-                                    <textarea type="text" name="anam_description" class="form-control" rows="2"></textarea>
+                                    <textarea type="text" name="anam_description" class="form-control" rows="3">{{ $medicine->anam_description }}</textarea>
                                 </div>
                                 @error('anam_description')
                                 <span class="text-danger er">{{ $message }}</span>
@@ -87,7 +87,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text"><i class="fas fa-temperature-high"></i></div>
                                     </div>
-                                    <input type="text" name="temperature" class="form-control">
+                                    <input type="text" name="temperature" class="form-control" value="{{ $medicine->temperature }}">
                                 </div>
                                 @error('temperature')
                                 <span class="text-danger er">{{ $message }}</span>
@@ -102,7 +102,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text"><i class="fas fa-wave-square"></i></div>
                                     </div>
-                                    <input type="text" name="fc" class="form-control">
+                                    <input type="text" name="fc" class="form-control" value="{{ $medicine->fc }}">
                                 </div>
                                 @error('fc')
                                 <span class="text-danger er">{{ $message }}</span>
@@ -117,15 +117,15 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text"><i class="fas fa-stethoscope"></i></div>
                                     </div>
-                                    <input type="text" name="fc" class="form-control">
+                                    <input type="text" name="spo2" class="form-control" value="{{ $medicine->spo2 }}">
                                 </div>
-                                @error('fc')
+                                @error('spo2')
                                 <span class="text-danger er">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
 
-                        <div class="col-xl-4 mt-1">
+                        <div class="col-xl-3 mt-1">
                             <div class="bg-primary rounded-lg">
                                 <p class="text-center text-white font-bold h5">OROFARINGE</p>
                             </div>
@@ -134,7 +134,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text"><i class="fas fa-teeth-open"></i></div>
                                     </div>
-                                    <textarea type="text" name="orofaringe" class="form-control" rows="2"></textarea>
+                                    <textarea type="text" name="orofaringe" class="form-control" rows="3">{{ $medicine->orofaringe }}</textarea>
                                 </div>
                                 @error('orofaringe')
                                 <span class="text-danger er">{{ $message }}</span>
@@ -151,7 +151,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text"><i class="fas fa-heartbeat"></i></div>
                                     </div>
-                                    <textarea type="text" name="cardiovascular" class="form-control" rows="2"></textarea>
+                                    <textarea type="text" name="cardiovascular" class="form-control" rows="3">{{ $medicine->cardiovascular }}</textarea>
                                 </div>
                                 @error('cardiovascular')
                                 <span class="text-danger er">{{ $message }}</span>
@@ -159,7 +159,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xl-4 mt-1">
+                        <div class="col-xl-5 mt-1">
                             <div class="bg-primary rounded-lg">
                                 <p class="text-center text-white font-bold h5">TÓRAX</p>
                             </div>
@@ -168,7 +168,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text"><i class="fas fa-lungs"></i></div>
                                     </div>
-                                    <textarea type="text" name="torax" class="form-control" rows="2"></textarea>
+                                    <textarea type="text" name="torax" class="form-control" rows="3">{{ $medicine->torax }}</textarea>
                                 </div>
                                 @error('torax')
                                 <span class="text-danger er">{{ $message }}</span>
@@ -192,12 +192,13 @@
                                 <div class="form-group">
                                     <label>¿APTO PARA ABORDAR VEHÍCULO DE TRANSPORTE?</label>
                                     <select name="result" class="form-control text-center">
+                                        <option value="{{ $medicine->result }}" disabled selected>{{ $medicine->result }}</option>
                                         <option value="SI">SI</option>
                                         <option value="NO">NO</option>
                                     </select>
                                 </div>
                                 @error('result')
-                                <span class="text-danger er">{{ $message }}</span>
+                                    <span class="text-danger er">{{ $message }}</span>
                                 @enderror
                             </div>
 
@@ -207,9 +208,9 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fas fa-file-archive"></i></div>
                                         </div>
-                                        <textarea type="text" name="observations" class="form-control" rows="2" placeholder="IMPRESIÓN DIAGNOSTICA"></textarea>
+                                        <textarea type="text" name="printdx" class="form-control" rows="3" placeholder="INDICACIONES MÉDICAS / OBSERVACIONES">{{ $medicine->printdx }}</textarea>
                                     </div>
-                                    @error('observations')
+                                    @error('printdx')
                                     <span class="text-danger er">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -221,9 +222,9 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fas fa-file-archive"></i></div>
                                         </div>
-                                        <textarea type="text" name="indications" class="form-control" rows="2" placeholder="INDICACIONES MÉDICAS / OBSERVACIONES"></textarea>
+                                        <textarea type="text" name="observations" class="form-control" rows="3" placeholder="INDICACIONES MÉDICAS / OBSERVACIONES">{{ $medicine->observations }}</textarea>
                                     </div>
-                                    @error('indications')
+                                    @error('observations')
                                     <span class="text-danger er">{{ $message }}</span>
                                     @enderror
                                 </div>

@@ -121,13 +121,26 @@ class Orders extends Component
             'test_id' => $this->testId
         ]);
 
-        $data = [
+        $dataMed = [
+            'anam_description' => 'NIEGA CONTACTO DIRECTO CON PERSONA O CASO SOSPECHOSO O CONFINADO DE COVID-19 EN LOS ULTIMOS 14 DIAS. / NIEGA SINTOMATOLOGÍA RESPIRATORIA. / EVALUADO EN REG, REN. REH Y LOTEP.',
+            'ant_personal' => 'NIEGA ANTECEDENTES PERSONALES.',
+            'ant_family' => 'NIEGA ANTECEDENTES FAMILIARES. / NIEGA COVID-19.',
+            'orofaringe' => 'NO DOLOROSO A LA DEGLUCIÓN',
+            'cardiovascular' => 'RUIDOS CARDIACOS RITMICOS, NORMOFONETICOS, AUSENCIA DE SOPLOS.',
+            'torax' => 'MURMULLO VESICULAR PASA BIEN EN AMBOS CAMPOS PULMONARES, VIBRACIONES VOCALES CONSERVADAS, AUSENCIA DE RUIDOS AGREGADOS.',
+            'printdx' => 'CLINICAMENTE SANO.',
+            'observations' => 'MEDIDAS PREVENTIVAS GENERALES (Lavado de manos, ditanciamiento físico, higiene respiratorio y uso de mascarilla)',
             'order_id' => $order->id,
             'user_id' => $order->user_id
         ];
 
-        $medicine = $order->medicine()->create($data);
-        $laboratory = $order->laboratory()->create($data);
+        $dataLab = [
+            'order_id' => $order->id,
+            'user_id' => $order->user_id
+        ];
+
+        $medicine = $order->medicine()->create($dataMed);
+        $laboratory = $order->laboratory()->create($dataLab);
 
         $this->resetUI();
         $this->emit('order-added', 'Orden Registrada');

@@ -82,6 +82,9 @@
                     <li>
                         <a href="{{ route('atenciones.laboratorio') }}"> Laboratorio </a>
                     </li>
+                    <li>
+                        <a href="{{ route('auditoria') }}"> Auditoria </a>
+                    </li>
                 </ul>
             </li>
         </ul>

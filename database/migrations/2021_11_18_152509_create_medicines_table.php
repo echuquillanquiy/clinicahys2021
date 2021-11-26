@@ -23,7 +23,7 @@ class CreateMedicinesTable extends Migration
             $table->text('cardiovascular')->nullable();
             $table->text('torax')->nullable();
             $table->text('lab_result')->nullable();
-            $table->text('indications')->nullable();
+            $table->text('printdx')->nullable();
             $table->text('observations')->nullable();
             $table->enum('result', ['SI', 'NO'])->default('SI');
             $table->string('temperature')->nullable();
