@@ -50,9 +50,9 @@
                                 <td class="text-center">{{ $laboratory->type }}</td>
                                 <td class="text-center">
                                     @if( $laboratory->result != 'NEGATIVO')
-                                        <span class="text-center badge badge-danger">{{ $laboratory->result }}</span>
+                                        <a href="javascript:void(0)" wire:click.prevent="updateResult" class="text-center badge badge-danger">{{ $laboratory->result }}</a>
                                     @else
-                                        <span class="text-center badge badge-success">{{ $laboratory->result }}</span>
+                                        <a href="javascript:void(0)" href="#" class="text-center badge badge-success">{{ $laboratory->result }}</a>
                                     @endif
                                 </td>
 

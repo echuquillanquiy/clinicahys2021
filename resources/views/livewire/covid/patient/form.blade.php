@@ -82,12 +82,21 @@
             <select wire:model.lazy="origin" class="form-control">
                 <option value="HUANCAYO">HUANCAYO</option>
                 <option value="HUANCAVELICA">HUANCAVELICA</option>
-
             </select>
         </div>
         @error('origin')
         <span class="text-danger er">{{ $message }}</span>
         @enderror
+    </div>
+
+    <div class="col-sm-6 mt-3">
+        <div class="form-group custom-file">
+            <input type="file" class="custom-file-input form-control" wire:model="image" accept="image/png, image/gif, image/jpeg">
+            <label class="custom-file-label">Imágen {{ $image }}</label>
+            @error('image')
+            <span class="text-danger er">{{ $message }}</span>
+            @enderror
+        </div>
     </div>
 
 </div>

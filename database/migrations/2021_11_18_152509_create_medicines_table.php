@@ -24,7 +24,6 @@ class CreateMedicinesTable extends Migration
             $table->text('orofaringe')->nullable();
             $table->text('cardiovascular')->nullable();
             $table->text('torax')->nullable();
-            $table->text('lab_result')->nullable();
             $table->text('printdx')->nullable();
             $table->text('observations')->nullable();
             $table->enum('result', ['SI', 'NO'])->default('SI');

@@ -90,7 +90,7 @@
                                     <input type="text" name="temperature" class="form-control" value="{{ $medicine->temperature }}">
                                 </div>
                                 @error('temperature')
-                                <span class="text-danger er">{{ $message }}</span>
+                                    <span class="badge badge-danger mt-1">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
@@ -105,7 +105,7 @@
                                     <input type="text" name="fc" class="form-control" value="{{ $medicine->fc }}">
                                 </div>
                                 @error('fc')
-                                <span class="text-danger er">{{ $message }}</span>
+                                    <span class="badge badge-danger mt-1">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
@@ -120,7 +120,7 @@
                                     <input type="text" name="spo2" class="form-control" value="{{ $medicine->spo2 }}">
                                 </div>
                                 @error('spo2')
-                                <span class="text-danger er">{{ $message }}</span>
+                                    <span class="badge badge-danger mt-1">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
@@ -181,7 +181,7 @@
                         </div>
 
                         <div class="col-xl-12 mt-2 text-center mb-2">
-                            <input type="text" class="form-control" name="lab_result" value="{{ $medicine->order->laboratory->result }}" readonly>
+                            <input type="text" class="form-control" value="{{ $medicine->order->laboratory->result }}" readonly>
                         </div>
 
                         <div class="bg-primary rounded-lg col-xl-12">

@@ -29,15 +29,30 @@ class Orders extends Component
         $this->testId = 'Elegir';
     }
 
+    protected $paginationTheme = 'bootstrap';
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
         $clients = Client::all('id', 'name');
         $positions = Position::all('id', 'name');
         $tests = Test::where('status', 'VIGENTE')->get();
 
-        $orders = Order::orderBy('id', 'asc')
-            ->where('created_at', 'LIKE', '%' . $this->dateFilter . '%')
-            ->paginate($this->pageSelected);
+        if ($this->search)
+            $orders = Order::join('patients as pat', 'pat.id', 'orders.patient_id')
+                ->select('orders.*', 'pat.lastname as apellidos', 'pat.name as nombres')
+                ->where('pat.lastname', 'LIKE', '%' . $this->search . '%')
+                ->orWhere('pat.name', 'LIKE', '%' . $this->search . '%')
+                ->orderBy('id', 'desc')
+                ->paginate($this->pageSelected);
+        else
+            $orders = Order::orderBy('id', 'asc')
+                ->where('created_at', 'LIKE', '%' . $this->dateFilter . '%')
+                ->paginate($this->pageSelected);
 
         return view('livewire.covid.order.orders', compact('orders', 'clients', 'positions', 'tests'));
     }
@@ -121,6 +136,13 @@ class Orders extends Component
             'test_id' => $this->testId
         ]);
 
+        $dataLab = [
+            'order_id' => $order->id,
+            'user_id' => $order->user_id
+        ];
+
+        $laboratory = $order->laboratory()->create($dataLab);
+
         $dataMed = [
             'anam_description' => 'NIEGA CONTACTO DIRECTO CON PERSONA O CASO SOSPECHOSO O CONFINADO DE COVID-19 EN LOS ULTIMOS 14 DIAS. / NIEGA SINTOMATOLOGÍA RESPIRATORIA. / EVALUADO EN REG, REN. REH Y LOTEP.',
             'ant_personal' => 'NIEGA ANTECEDENTES PERSONALES.',
@@ -136,13 +158,7 @@ class Orders extends Component
             'user_id' => $order->user_id
         ];
 
-        $dataLab = [
-            'order_id' => $order->id,
-            'user_id' => $order->user_id
-        ];
-
         $medicine = $order->medicine()->create($dataMed);
-        $laboratory = $order->laboratory()->create($dataLab);
 
         $this->resetUI();
         $this->emit('order-added', 'Orden Registrada');

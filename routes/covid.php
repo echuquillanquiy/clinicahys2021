@@ -18,6 +18,8 @@ Route::get('/clients', [ClientController::class, 'index'])->name('clientes');
 Route::get('/tests', [TestController::class, 'index'])->name('pruebas');
 Route::get('/positions', [PositionController::class, 'index'])->name('puestos');
 Route::get('/patients', [PatientController::class, 'index'])->name('pacientes');
+Route::get('/importar-pacientes', [PatientController::class, 'importar'])->name('importar.pacientes');
+Route::post('import-excel-patient', [PatientController::class, 'importExcel'])->name('import.patient');
 Route::get('/orders', [OrderController::class, 'index'])->name('ordenes');
 Route::get('/medicine', [MedicineController::class, 'index'])->name('atenciones.medicina');
 Route::get('/laboratory', [LaboratoryController::class, 'index'])->name('atenciones.laboratorio');

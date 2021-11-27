@@ -9,8 +9,12 @@
     </div>
 
     <div class="row">
-        <div class="w-100 mt-3 col-xl-11">
+        <div class="w-100 mt-3 col-xl-8">
             <input type="text" wire:model="search" class="w-100 form-control product-search br-30" id="input-search" placeholder="Buscar..." >
+        </div>
+
+        <div class="w-100 mt-3 col-xl-3">
+            <input type="date" wire:model="dateFilter" class="w-100 form-control product-search br-30">
         </div>
 
         <div class="w-100 col-xl-1 mt-3">
@@ -35,6 +39,7 @@
                             <th>SUBCONTRATA</th>
                             <th>NOMBRES Y APELLIDOS</th>
                             <th>LUGAR DE PROCEDENCIA</th>
+                            <th>FECHA DE ATENCIÓN</th>
                             <th>Resultados</th>
                         </tr>
                         </thead>
@@ -46,9 +51,10 @@
                                 <td class="text-center">{{ $order->subclient->name  }}</td>
                                 <td class="text-center">{{ $order->patient->name }}, {{ $order->patient->lastname }}</td>
                                 <td class="text-center">{{ $order->patient->origin }}</td>
+                                <td class="text-center">{{ $order->created_at->format('Y-m-d') }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('form.medicina', $order->medicine->id) }}" class="btn btn-outline-secondary"><i class="fas fa-file-medical"></i></a>
-                                    <a href="{{ route('historia', $order) }}" class="btn btn-outline-success"><i class="fas fa-file-pdf"></i></a>
+                                    <a href="{{ route('historia', $order) }}" class="btn btn-outline-success" target="_blank"><i class="fas fa-file-pdf"></i></a>
                                 </td>
                             </tr>
                         @endforeach

@@ -9,8 +9,12 @@
     </div>
 
     <div class="row">
-        <div class="w-100 mt-3 col-xl-11">
+        <div class="w-100 mt-3 col-xl-8">
             <input type="text" wire:model="search" class="w-100 form-control product-search br-30" id="input-search" placeholder="Buscar..." >
+        </div>
+
+        <div class="w-100 mt-3 col-xl-3">
+            <input type="date" wire:model="dateFilter" class="w-100 form-control product-search br-30">
         </div>
 
         <div class="w-100 col-xl-1 mt-3">

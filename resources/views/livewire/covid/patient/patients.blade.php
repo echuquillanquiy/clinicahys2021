@@ -7,7 +7,8 @@
             </ol>
         </nav>
         <div class="dropdown filter custom-dropdown-icon">
-            <a href="javascript:void(0);" class="btn btn-success" data-toggle="modal" data-target="#theModal"><i class="fas fa-building"></i> Nueva empresa</a>
+            <a href="javascript:void(0);" class="btn btn-success" data-toggle="modal" data-target="#theModal"><i class="fas fa-user-circle"></i> Nuevo Paciente</a>
+            <a href="{{ route('importar.pacientes') }}" class="btn btn-outline-primary"><i class="fas fa-file-excel"></i> Importar</a>
         </div>
     </div>
 
@@ -40,6 +41,7 @@
                             <th>FECHA NACIMIENTO</th>
                             <th>EDAD</th>
                             <th>LUGAR DE PROCEDENCIA</th>
+                            <th>HUELLA Y FIRMA</th>
                             <th class="text-center">Opciones</th>
                         </tr>
                         </thead>
@@ -53,6 +55,9 @@
                                 <td class="text-center">{{ $patient->birthday }}</td>
                                 <td class="text-center">{{ $patient->age }}</td>
                                 <td class="text-center">{{ $patient->origin }}</td>
+                                <td class="text-center">
+                                    <img src="{{ asset('storage/patients_huella_firma/' . $patient->image) }}" alt="{{ $patient->name }}" class="w-25">
+                                </td>
                                 <td class="text-center">
                                     <a href="javascript:void(0);" wire:click="Edit({{ $patient->id }})"  data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit text-warning fa-lg btn btn-outline-warning"></i></a>
                                     <a href="javascript:void(0);"  onclick="Confirm('{{ $patient->id }}', '{{ $patient->orders->count() }}')" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt text-danger fa-lg btn btn-outline-danger"></i></a>

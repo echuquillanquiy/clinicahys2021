@@ -19,9 +19,10 @@ class CreatePatientsTable extends Migration
             $table->string('dni')->unique();
             $table->string('name');
             $table->string('lastname');
-            $table->date('birthday');
-            $table->string('age');
+            $table->date('birthday')->nullable();
+            $table->string('age')->nullable();
             $table->string('origin');
+            $table->string('image')->nullable();
 
             $table->timestamps();
         });

@@ -5,14 +5,17 @@ use App\Models\Department;
 use App\Models\Patient;
 use Carbon\Carbon;
 use Livewire\WithPagination;
+use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 
 use Livewire\Component;
 
 class Patients extends Component
 {
     use WithPagination;
+    use WithFileUploads;
 
-    public $pageTitle, $componentName, $search, $pageSelected, $selected_id, $dni, $name, $lastname, $birthday, $age, $now, $origin;
+    public $pageTitle, $componentName, $search, $pageSelected, $selected_id, $dni, $name, $lastname, $birthday, $age, $now, $origin, $image;
 
     protected $paginationTheme = 'bootstrap';
 
@@ -26,6 +29,7 @@ class Patients extends Component
         $this->pageTitle = "Listado";
         $this->componentName = "Empresas Clientes";
         $this->pageSelected = 10;
+        $this->origin = 'HUANCAYO';
         $this->calcEdad();
     }
 
@@ -53,6 +57,7 @@ class Patients extends Component
         $this->age = $patient->age;
         $this->origin = $patient->origin;
         $this->selected_id = $patient->id;
+        $this->image = null;
 
         $this->emit('show-modal', 'Show Modal');
 
@@ -72,7 +77,7 @@ class Patients extends Component
             'lastname' => 'required|min:3',
             'birthday' => 'required',
             'age' => 'required',
-            'origin' => 'required|not_in:Elegir'
+            'origin' => 'required'
         ];
 
         $messages = [
@@ -86,12 +91,11 @@ class Patients extends Component
             'birthday.required' => 'la fecha de nacimiento es obligatoria.',
             'age.required' => 'La edad es obligatoria.',
             'origin.required' => 'El departamento de origen es requerido.',
-            'origin.not_in' => 'Elija una opción diferente e Elegir.'
         ];
 
         $this->validate($rules, $messages);
 
-        Patient::create([
+        $patient = Patient::create([
             'dni' => $this->dni,
             'name' => $this->name,
             'lastname' => $this->lastname,
@@ -99,6 +103,14 @@ class Patients extends Component
             'age' => $this->age,
             'origin' => $this->origin
         ]);
+
+        if ($this->image)
+        {
+            $customFileName = uniqid() . '_.' . $this->image->extension();
+            $this->image->storeAs('public/patients_huella_firma', $customFileName);
+            $patient->image = $customFileName;
+            $patient->save();
+        }
 
         $this->resetUI();
         $this->emit('patient-added', 'Paciente registrado');
@@ -112,7 +124,7 @@ class Patients extends Component
             'lastname' => 'required|min:3',
             'birthday' => 'required',
             'age' => 'required',
-            'origin' => 'required|not_in:Elegir'
+            'origin' => 'required'
         ];
 
         $messages = [
@@ -126,7 +138,6 @@ class Patients extends Component
             'birthday.required' => 'la fecha de nacimiento es obligatoria.',
             'age.required' => 'La edad es obligatoria.',
             'origin.required' => 'El departamento de origen es requerido.',
-            'origin.not_in' => 'Elija una opción diferente e Elegir.'
         ];
 
         $this->validate($rules, $messages);
@@ -141,6 +152,24 @@ class Patients extends Component
             'age' => $this->age,
             'origin' => $this->origin
         ]);
+
+        if ($this->image)
+        {
+            $customFileName = uniqid() . '_.' . $this->image->extension();
+            $this->image->storeAs('public/patients_huella_firma', $customFileName);
+            $imageName = $patient->image;
+
+            $patient->image = $customFileName;
+            $patient->save();
+
+            if ($imageName != null)
+            {
+                if (file_exists('storage/patients_huella_firma/' . $imageName))
+                {
+                    unlink('storage/patients_huella_firma/' . $imageName);
+                }
+            }
+        }
 
         $this->resetUI();
         $this->emit('patient-updated', 'Paciente Actualizado');
