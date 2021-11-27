@@ -19,6 +19,8 @@ class CreateMedicinesTable extends Migration
             $table->text('anam_description')->nullable();
             $table->string('ant_personal')->nullable();
             $table->string('ant_family')->nullable();
+            $table->boolean('importance')->nullable();
+            $table->boolean('asymptomatic')->nullable();
             $table->text('orofaringe')->nullable();
             $table->text('cardiovascular')->nullable();
             $table->text('torax')->nullable();

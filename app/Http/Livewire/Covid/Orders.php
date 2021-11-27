@@ -130,6 +130,8 @@ class Orders extends Component
             'torax' => 'MURMULLO VESICULAR PASA BIEN EN AMBOS CAMPOS PULMONARES, VIBRACIONES VOCALES CONSERVADAS, AUSENCIA DE RUIDOS AGREGADOS.',
             'printdx' => 'CLINICAMENTE SANO.',
             'observations' => 'MEDIDAS PREVENTIVAS GENERALES (Lavado de manos, ditanciamiento físico, higiene respiratorio y uso de mascarilla)',
+            'importance' => 1,
+            'asymptomatic' => 1,
             'order_id' => $order->id,
             'user_id' => $order->user_id
         ];
