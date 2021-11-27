@@ -17,8 +17,10 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->enum('status', ['Active', 'Locked'])->default('Active');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('profile', ['Admin', 'Covid', 'Empresa'])->default('Covid');
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();

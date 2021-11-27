@@ -56,7 +56,11 @@
                                 <td class="text-center">{{ $patient->age }}</td>
                                 <td class="text-center">{{ $patient->origin }}</td>
                                 <td class="text-center">
-                                    <img src="{{ asset('storage/patients_huella_firma/' . $patient->image) }}" alt="{{ $patient->name }}" class="w-25">
+                                    @if($patient->image == null)
+                                        <span class="badge badge-warning"> NO TIENE FIRMA </span>
+                                    @else
+                                        <span class="badge badge-success"> SI TIENE FIRMA </span>
+                                    @endif
                                 </td>
                                 <td class="text-center">
                                     <a href="javascript:void(0);" wire:click="Edit({{ $patient->id }})"  data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit text-warning fa-lg btn btn-outline-warning"></i></a>
