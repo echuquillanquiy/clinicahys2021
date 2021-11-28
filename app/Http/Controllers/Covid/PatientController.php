@@ -21,6 +21,17 @@ class PatientController extends Controller
 
     public function importExcel(Request $request)
     {
+        $rules = [
+            'file' => 'required|in:xlsx,xls'
+        ];
+
+        $messages = [
+            'file.required' => 'Seleccione un archivo excel',
+            'file.in' => 'Solo puede seleccionar archivos excel'
+        ];
+
+        $request->validate($rules, $messages);
+
         $file = $request->file('file');
         $patients = (new FastExcel)->import($file, function ($line) {
             return Patient::create([
@@ -32,5 +43,7 @@ class PatientController extends Controller
                 'origin' => $line['Procedencia']
             ]);
         });
+
+        return view('covid.patients.index');
     }
 }

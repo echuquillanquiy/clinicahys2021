@@ -11,12 +11,17 @@
                 <form action="{{ route('import.patient') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body custom-file">
-                        <input type="file" name="file" class="custom-file-input" required>
-                        <label class="custom-file-label">Seleccione su archivo paciente.xlsx</label>
+                        <input type="file" name="file" class="custom-file-input">
+                        <label class="custom-file-label">Seleccione un archivo excel</label>
+                        @error('file')
+                            <span class="badge badge-danger">{{ $message }}</span>
+                        @enderror
                     </div>
+
+
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary btn-lg">Importar</button>
-                        <a href="{{ url('collaborators') }}" class="btn btn-danger btn-lg text-white">Cancelar</a>
+                        <a href="{{ route('pacientes') }}" class="btn btn-danger btn-lg text-white">Cancelar</a>
                     </div>
                 </form>
             </div>
