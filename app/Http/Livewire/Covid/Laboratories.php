@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Covid;
 use App\Models\Laboratory;
+use Carbon\Carbon;
 use Livewire\WithPagination;
 
 use Livewire\Component;
@@ -10,19 +11,36 @@ class Laboratories extends Component
 {
     use WithPagination;
 
-    public $pageTitle, $componentName, $search, $selected_id, $pageSelected, $type, $result, $orderId, $userId, $userName;
+    public $pageTitle, $componentName, $search, $selected_id, $pageSelected, $type, $result, $orderId, $userId, $userName, $dateFilter;
+
+    protected $paginationTheme = 'bootstrap';
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     public function mount()
     {
         $this->pageTitle = 'Listado Resultado';
         $this->componentName = 'Laboratorio Covid-19';
-        $this->pageSelected = 25;
+        $this->dateFilter = Carbon::now()->format('Y-m-d');
+        $this->pageSelected = 1;
     }
 
     public function render()
     {
-        $laboratories = Laboratory::orderBy('id', 'desc')
-            ->paginate($this->pageSelected);
+        if ($this->search)
+            $laboratories = Laboratory::join('patients as pat', 'pat.id', 'laboratories.patient_id')
+                ->select('laboratories.*', 'pat.lastname as apellidos', 'pat.name as nombres')
+                ->where('pat.lastname', 'LIKE', '%' . $this->search . '%')
+                ->orWhere('pat.name', 'LIKE', '%' . $this->search . '%')
+                ->orderBy('id', 'desc')
+                ->paginate($this->pageSelected);
+        else
+            $laboratories = Laboratory::orderBy('id', 'desc')
+                ->where('created_at', 'LIKE', '%' . $this->dateFilter . '%')
+                ->paginate($this->pageSelected);
 
         return view('livewire.covid.laboratory.laboratories', compact('laboratories'));
     }

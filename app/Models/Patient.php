@@ -15,4 +15,14 @@ class Patient extends Model
     {
         return $this->hasMany(Order::class);
     }
+
+    public function laboratories()
+    {
+        return $this->hasMany(Laboratory::class);
+    }
+    public function medicines()
+    {
+        return $this->hasMany(Medicine::class);
+    }
+
 }

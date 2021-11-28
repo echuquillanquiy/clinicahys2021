@@ -137,6 +137,7 @@ class Orders extends Component
         ]);
 
         $dataLab = [
+            'patient_id' => $order->patient_id,
             'order_id' => $order->id,
             'user_id' => $order->user_id
         ];
@@ -154,6 +155,7 @@ class Orders extends Component
             'observations' => 'MEDIDAS PREVENTIVAS GENERALES (Lavado de manos, ditanciamiento físico, higiene respiratorio y uso de mascarilla)',
             'importance' => 1,
             'asymptomatic' => 1,
+            'patient_id' => $order->patient_id,
             'order_id' => $order->id,
             'user_id' => $order->user_id
         ];

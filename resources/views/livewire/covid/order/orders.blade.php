@@ -38,6 +38,7 @@
                         <thead>
                         <tr class="text-center">
                             <th>#</th>
+                            <th>FECHA</th>
                             <th>EMPRESA</th>
                             <th>SUBCONTRATA</th>
                             <th>PACIENTE</th>
@@ -51,6 +52,7 @@
                         @foreach($orders as $order)
                             <tr>
                                 <td class="text-center">{{ $order->id }}</td>
+                                <td class="text-center">{{ $order->created_at }}</td>
                                 <td class="text-center">{{ $order->client->name }}</td>
                                 <td class="text-center">{{ $order->subclient->name }}</td>
                                 <td class="text-center">{{ $order->patient->name }}, {{ $order->patient->lastname }}</td>

@@ -9,11 +9,13 @@
     </div>
 
     <div class="row">
-        <div class="w-100 mt-3 col-xl-11">
+        <div class="w-100 mt-3 col-xl-7">
             <input type="text" wire:model="search" class="w-100 form-control product-search br-30" id="input-search" placeholder="Buscar..." >
         </div>
-
-        <div class="w-100 col-xl-1 mt-3">
+        <div class="w-100 mt-3 col-xl-3">
+            <input type="date" wire:model="dateFilter" class="w-100 form-control product-search br-30">
+        </div>
+        <div class="w-100 col-xl-2 mt-3">
             <select class="form-control" wire:model="pageSelected">
                 <option value="5">5</option>
                 <option value="10">10</option>
@@ -31,6 +33,7 @@
                         <thead>
                         <tr class="text-center">
                             <th>#</th>
+                            <th>FECHA</th>
                             <th>EMPRESA</th>
                             <th>SUBCONTRATA</th>
                             <th>NOMBRES Y APELLIDOS</th>
@@ -44,6 +47,7 @@
                         @foreach($laboratories as $laboratory)
                             <tr>
                                 <td class="text-center">{{ $laboratory->id }}</td>
+                                <td class="text-center">{{ $laboratory->created_at }}</td>
                                 <td class="text-center">{{ $laboratory->order->client->name }}</td>
                                 <td class="text-center">{{ $laboratory->order->subclient->name  }}</td>
                                 <td class="text-center">{{ $laboratory->order->patient->name }}, {{ $laboratory->order->patient->lastname }}</td>

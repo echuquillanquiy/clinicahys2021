@@ -30,6 +30,7 @@ class CreateMedicinesTable extends Migration
             $table->string('temperature')->nullable();
             $table->string('fc')->nullable();
             $table->string('spo2')->nullable();
+            $table->foreignId('patient_id')->constrained();
             $table->foreignId('order_id')->constrained();
             $table->foreignId('user_id')->constrained();
 

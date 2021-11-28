@@ -35,6 +35,7 @@
                         <thead>
                         <tr class="text-center">
                             <th>#</th>
+                            <th>FECHA</th>
                             <th>EMPRESA</th>
                             <th>SUBCONTRATA</th>
                             <th>NOMBRES Y APELLIDOS</th>
@@ -47,11 +48,12 @@
                         @foreach($medicines as $medicine)
                             <tr>
                                 <td class="text-center">{{ $medicine->id }}</td>
+                                <td class="text-center">{{ $medicine->created_at }}</td>
                                 <td class="text-center">{{ $medicine->order->client->name }}</td>
                                 <td class="text-center">{{ $medicine->order->subclient->name  }}</td>
-                                <td class="text-center">{{ $medicine->order->patient->name }}, {{ $medicine->order->patient->lastname }}</td>
-                                <td class="text-center">{{ $medicine->order->patient->origin }}</td>
-                                <th class="text-center">{{ $medicine->order->user->name }}</th>
+                                <td class="text-center">{{ $medicine->patient->name }}, {{ $medicine->patient->lastname }}</td>
+                                <td class="text-center">{{ $medicine->patient->origin }}</td>
+                                <th class="text-center">{{ $medicine->user->name }}</th>
                                 <td class="text-center">
                                     <a href="{{ route('form.medicina', $medicine) }}" class="btn btn-outline-secondary"><i class="fas fa-file-medical"></i></a>
                                 </td>

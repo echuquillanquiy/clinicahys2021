@@ -26,7 +26,7 @@
 
 <table style="width: 100%; font-size: 0.8rem">
     <tr>
-        <th style="text-align: left;">FECHA: {{ $order->created_at->format('Y/m/d') }}</th>
+        <th style="text-align: left;">FECHA: {{ $order->created_at->format('d-m-Y') }}</th>
         <th style="text-align: right;">HORA DE ATENCIÓN: {{ $order->created_at->format('H:i:s') }}</th>
     </tr>
 </table>
@@ -45,7 +45,7 @@
 
 <table style="width: 100%; font-size: 0.8rem; background-color: #acb0c3; padding-top: 0.1rem; margin-top: 5px">
     <tr>
-        <td><strong>FECHA:</strong> {{ $order->created_at->format('Y/m/d') }}</td>
+        <td><strong>FECHA:</strong> {{ $order->created_at->format('d-m-Y') }}</td>
         <td><strong>HORA:</strong> {{ $order->created_at->format('H:i:s') }}</td>
         <td><strong>DNI:</strong> {{ $order->patient->dni }}</td>
         <td><strong>EDAD:</strong> {{ $order->patient->age }} años</td>

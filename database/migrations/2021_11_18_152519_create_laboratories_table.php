@@ -18,6 +18,7 @@ class CreateLaboratoriesTable extends Migration
 
             $table->enum('type', ['ANTIGENO', 'MOLECULAR', 'RÁPIDA'])->default('ANTIGENO');
             $table->enum('result', ['POSITIVO', 'NEGATIVO', 'NO APLICA'])->default('NEGATIVO');
+            $table->foreignId('patient_id')->constrained();
             $table->foreignId('order_id')->constrained();
             $table->foreignId('user_id')->constrained();
 

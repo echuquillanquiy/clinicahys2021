@@ -32,13 +32,16 @@ class Medicines extends Component
     public function render()
     {
         if ($this->search)
-            $medicines = Medicine::with('order')
+            $medicines = Medicine::join('patients as pat', 'pat.id', 'medicines.patient_id')
+                ->select('medicines.*', 'pat.lastname as apellidos', 'pat.name as nombres')
+                ->where('pat.lastname', 'LIKE', '%' . $this->search . '%')
+                ->orWhere('pat.name', 'LIKE', '%' . $this->search . '%')
+                ->orderBy('id', 'desc')
                 ->paginate($this->pageSelected);
         else
-            $medicines = Medicine::orderBy('id', 'desc')
+            $medicines = Medicine::orderBy('id', 'asc')
                 ->where('created_at', 'LIKE', '%' . $this->dateFilter . '%')
                 ->paginate($this->pageSelected);
-
 
         return view('livewire.covid.medicine.medicines', compact('medicines'));
     }

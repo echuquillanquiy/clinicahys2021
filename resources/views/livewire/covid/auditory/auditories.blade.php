@@ -9,7 +9,7 @@
     </div>
 
     <div class="row">
-        <div class="w-100 mt-3 col-xl-8">
+        <div class="w-100 mt-3 col-xl-7">
             <input type="text" wire:model="search" class="w-100 form-control product-search br-30" id="input-search" placeholder="Buscar..." >
         </div>
 
@@ -17,7 +17,7 @@
             <input type="date" wire:model="dateFilter" class="w-100 form-control product-search br-30">
         </div>
 
-        <div class="w-100 col-xl-1 mt-3">
+        <div class="w-100 col-xl-2 mt-3">
             <select class="form-control" wire:model="pageSelected">
                 <option value="5">5</option>
                 <option value="10">10</option>
@@ -51,7 +51,7 @@
                                 <td class="text-center">{{ $order->subclient->name  }}</td>
                                 <td class="text-center">{{ $order->patient->name }}, {{ $order->patient->lastname }}</td>
                                 <td class="text-center">{{ $order->patient->origin }}</td>
-                                <td class="text-center">{{ $order->created_at->format('Y-m-d') }}</td>
+                                <td class="text-center">{{ $order->created_at }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('form.medicina', $order->medicine->id) }}" class="btn btn-outline-secondary"><i class="fas fa-file-medical"></i></a>
                                     <a href="{{ route('historia', $order) }}" class="btn btn-outline-success" target="_blank"><i class="fas fa-file-pdf"></i></a>
