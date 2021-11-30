@@ -23,10 +23,9 @@ class Orders extends Component
         $this->componentName = 'Ordenes Covid';
         $this->pageSelected = 25;
         $this->dateFilter = Carbon::now()->format('Y-m-d');
-        $this->clientId = 'Elegir';
-        $this->subclientId = 'Elegir';
-        $this->positionId = 'Elegir';
-        $this->testId = 'Elegir';
+        $this->testId = 1;
+        $this->clientId = 1;
+        $this->positionId = 1;
     }
 
     protected $paginationTheme = 'bootstrap';
@@ -97,22 +96,16 @@ class Orders extends Component
     {
         $rules = [
             'patientId' => 'required',
-            'positionId' => 'required|not_in:Elegir',
-            'clientId' => 'required|not_in:Elegir',
-            'subclientId' => 'required|not_in:Elegir',
-            'testId' => 'required|not_in:Elegir',
+            'positionId' => 'required',
+            'clientId' => 'required',
+            'testId' => 'required',
         ];
 
         $messages = [
             'patientId.required' => 'Por favor escriba un número Dni.',
             'positionId.required' => 'El campo es requerido.',
-            'positionId.not_in' => 'Elige una una opción diferente a Elegir.',
             'clientId.required' => 'El campo es requerido.',
-            'clientId.not_in' => 'Elige una una opción diferente a Elegir.',
-            'subclientId.required' => 'El campo es requerido.',
-            'subclientId.not_in' => 'Elige una una opción diferente a Elegir.',
             'testId.required' => 'El campo es requerido.',
-            'testId.not_in' => 'Elige una una opción diferente a Elegir.',
         ];
 
         $this->validate($rules, $messages);

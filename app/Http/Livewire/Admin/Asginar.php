@@ -14,6 +14,13 @@ class Asginar extends Component
 
     public $role, $componentName, $permisosSelected = [], $old_permissions = [], $pageSelected;
 
+    protected $paginationTheme = 'bootstrap';
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
     public function mount()
     {
         $this->role = 'Elegir';

@@ -49,7 +49,11 @@
                                 <td class="text-center">{{ $laboratory->id }}</td>
                                 <td class="text-center">{{ $laboratory->created_at }}</td>
                                 <td class="text-center">{{ $laboratory->order->client->name }}</td>
-                                <td class="text-center">{{ $laboratory->order->subclient->name  }}</td>
+                                @if($laboratory->order->subclient_id)
+                                    <td class="text-center">{{ $laboratory->order->subclient->name  }}</td>
+                                @else
+                                    <td class="text-center"></td>
+                                @endif
                                 <td class="text-center">{{ $laboratory->order->patient->name }}, {{ $laboratory->order->patient->lastname }}</td>
                                 <td class="text-center">{{ $laboratory->type }}</td>
                                 <td class="text-center">
@@ -62,7 +66,9 @@
 
                                 <th class="text-center">{{ $laboratory->order->user->name }}</th>
                                 <td class="text-center">
+                                    @can('Laboratorio_update')
                                     <a href="javascript:void(0);" wire:click="Edit({{ $laboratory->id }})" title="Registrar" data-toggle="modal" data-target="#theModal" class="btn btn-outline-secondary">Registrar Resultado</a>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach

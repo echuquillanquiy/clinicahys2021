@@ -25,7 +25,7 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text"><i class="fas fa-edit"></i></div>
                     </div>
-                    <input type="text" wire:model="name" class="form-control uppercase" >
+                    <input type="text" wire:model="name" class="form-control uppercase" readonly>
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text"><i class="fas fa-edit"></i></div>
                     </div>
-                    <input type="text" wire:model="lastname" class="form-control uppercase" >
+                    <input type="text" wire:model="lastname" class="form-control uppercase" readonly>
                 </div>
             </div>
         </div>
@@ -50,7 +50,7 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text"><i class="fas fa-edit"></i></div>
                     </div>
-                    <input type="text" wire:model="dni" wire:focus="dni" wire:init="editDni()" class="form-control uppercase" disabled>
+                    <input type="text" wire:model="dni" wire:focus="dni" wire:init="editDni()" class="form-control uppercase" readonly>
                 </div>
                 @error('dni')
                 <span class="text-danger er">{{ $message }}</span>
@@ -83,13 +83,12 @@
         </div>
     @endif
 
-    <div class="col-xl-3">
+    <div class="col-xl-6">
         <div class="form-group">
             <label>EMPRESAS</label>
             <select wire:model.lazy="clientId" class="form-control">
-                <option value="Elegir">[Elegir]</option>
                 @foreach($clients as $client)
-                    <option value="{{ $client->id }}">{{ $client->name }}</option>
+                    <option value="{{ $client->id }}" selected>{{ $client->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -98,28 +97,27 @@
         @enderror
     </div>
 
-    <div class="col-xl-3">
-        <div class="form-group">
-            <label>SUBCONTRATA</label>
-            <select wire:model.lazy="subclientId" class="form-control">
-                <option value="Elegir">[Elegir]</option>
-                @foreach($clients as $client)
-                    <option value="{{ $client->id }}">{{ $client->name }}</option>
-                @endforeach
-            </select>
-        </div>
-        @error('subclientId')
-        <span class="text-danger er">{{ $message }}</span>
-        @enderror
-    </div>
+{{--    <div class="col-xl-3">--}}
+{{--        <div class="form-group">--}}
+{{--            <label>SUBCONTRATA</label>--}}
+{{--            <select wire:model.lazy="subclientId" class="form-control">--}}
+{{--                <option value="">[Elegir]</option>--}}
+{{--                @foreach($clients as $client)--}}
+{{--                    <option value="{{ $client->id }}">{{ $client->name }}</option>--}}
+{{--                @endforeach--}}
+{{--            </select>--}}
+{{--        </div>--}}
+{{--        @error('subclientId')--}}
+{{--        <span class="text-danger er">{{ $message }}</span>--}}
+{{--        @enderror--}}
+{{--    </div>--}}
 
     <div class="col-xl-3">
         <div class="form-group">
             <label>PUESTOS</label>
             <select wire:model.lazy="positionId" class="form-control">
-                <option value="Elegir">[Elegir]</option>
                 @foreach($positions as $position)
-                    <option value="{{ $position->id }}">{{ $position->name }}</option>
+                    <option value="{{ $position->id }}" selected>{{ $position->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -132,9 +130,8 @@
         <div class="form-group">
             <label>PRUEBA</label>
             <select wire:model.lazy="testId" class="form-control">
-                <option value="Elegir">[Elegir]</option>
                 @foreach($tests as $test)
-                    <option value="{{ $test->id }}">{{ $test->brand }}</option>
+                    <option value="{{ $test->id }}" selected>{{ $test->brand }}</option>
                 @endforeach
             </select>
         </div>

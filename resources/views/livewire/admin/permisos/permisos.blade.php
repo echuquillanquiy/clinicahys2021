@@ -6,9 +6,12 @@
                 <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);">{{ $componentName }}</a></li>
             </ol>
         </nav>
+
+        @can('Permiso_create')
         <div class="dropdown filter custom-dropdown-icon">
-            <a href="javascript:void(0);" class="btn btn-success" data-toggle="modal" data-target="#theModal"><i class="fas fa-building"></i> Nueva empresa</a>
+            <a href="javascript:void(0);" class="btn btn-success" data-toggle="modal" data-target="#theModal"><i class="fas fa-user-tag"></i> Nueva permiso</a>
         </div>
+        @endcan
     </div>
 
     <div class="row">
@@ -44,8 +47,12 @@
                                 <td class="text-center">{{ $permiso->id }}</td>
                                 <td class="text-center">{{ $permiso->name }}</td>
                                 <td class="text-center">
+                                    @can('Permiso_update')
                                     <a href="javascript:void(0);" wire:click="Edit({{ $permiso->id }})"  data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit text-warning fa-lg btn btn-outline-warning"></i></a>
-                                    <a href="javascript:void(0);"  onclick="Confirm('{{ $permiso->id }}')" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt text-danger fa-lg btn btn-outline-danger"></i></a>
+                                    @endcan
+                                    @can('Permiso_destroy')
+                                        <a href="javascript:void(0);"  onclick="Confirm('{{ $permiso->id }}')" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt text-danger fa-lg btn btn-outline-danger"></i></a>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach

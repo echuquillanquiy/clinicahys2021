@@ -61,7 +61,7 @@ class Permisos extends Component
     public function Edit(Permission $permisos)
     {
         $this->selected_id = $permisos->id;
-        $this->permisosName = $permisos->name;
+        $this->permissionName = $permisos->name;
 
         $this->emit('show-modal', 'Show Modal!');
     }

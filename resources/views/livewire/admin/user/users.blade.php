@@ -6,9 +6,11 @@
                 <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);">{{ $componentName }}</a></li>
             </ol>
         </nav>
+        @can('Usuario_create')
         <div class="dropdown filter custom-dropdown-icon">
-            <a href="javascript:void(0);" class="btn btn-success" data-toggle="modal" data-target="#theModal"><i class="fas fa-building"></i> Nuevo Usuario</a>
+            <a href="javascript:void(0);" class="btn btn-success" data-toggle="modal" data-target="#theModal"><i class="fas fa-user-plus"></i> Nuevo Usuario</a>
         </div>
+        @endcan
     </div>
 
     <div class="row">
@@ -64,8 +66,13 @@
                                     @endif
                                 </td>
                                 <td class="text-center">
+                                    @can('Usuario_update')
                                     <a href="javascript:void(0);" wire:click="Edit({{ $user->id }})"  data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit text-warning fa-lg btn btn-outline-warning"></i></a>
+                                    @endcan
+
+                                    @can('Usuario_destroy')
                                     <a href="javascript:void(0);"  onclick="Confirm('{{ $user->id }}', '{{ $user->orders->count() }}')" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt text-danger fa-lg btn btn-outline-danger"></i></a>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach
@@ -89,18 +96,25 @@
             $('#theModal').modal('hide')
         });
 
-        window.livewire.on('user-updated', msg => {
+        window.livewire.on('user-updated', Msg => {
             $('#theModal').modal('hide')
+            noty(Msg)
+        });
+        window.livewire.on('user-deleted', Msg => {
+            noty(Msg)
+        });
+
+        window.livewire.on('hide-modal', msg => {
+            $('#theModal').modal('hide')
+        });
+
+        window.livewire.on('user-withorders', Msg => {
+            noty(Msg)
         });
     });
 
-    function Confirm(id, orders)
+    function Confirm(id)
     {
-        if (orders > 0){
-            swal('NO SE PUEDE ELIMINAR EL CLIENTE POR QUE TIENE ORDENES RELACIONADAS')
-            return;
-        }
-
         swal({
             title: 'CONFIRMAR',
             text: '¿CONFIRMAS ELIMINAR EL REGISTRO?',

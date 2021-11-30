@@ -14,6 +14,10 @@ class ClientSeeder extends Seeder
      */
     public function run()
     {
-        Client::factory(10)->create();
+        Client::create([
+            'ruc' => '20126702737 ',
+            'name' => 'COMPAÑIA MINERA CARAVELI S.A.C.',
+            'address' => 'AV. PABLO CARRIQUIRRY NRO. 691 URB. URB. EL PALOMAR SAN ISIDR (A UNA CUADRA MINISTERIO DEL INTERIOR) LIMA - LIMA - SAN ISIDRO'
+        ]);
     }
 }

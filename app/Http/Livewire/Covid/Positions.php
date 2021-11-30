@@ -18,7 +18,7 @@ class Positions extends Component
     {
         $this->pageTitle = "Listado";
         $this->componentName = "Puestos";
-        $this->pageSelected = 5;
+        $this->pageSelected = 10;
     }
 
     public function updatingSearch()

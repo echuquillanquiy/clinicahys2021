@@ -50,12 +50,18 @@
                                 <td class="text-center">{{ $medicine->id }}</td>
                                 <td class="text-center">{{ $medicine->created_at }}</td>
                                 <td class="text-center">{{ $medicine->order->client->name }}</td>
-                                <td class="text-center">{{ $medicine->order->subclient->name  }}</td>
+                                @if($medicine->order->subclient_id)
+                                    <td class="text-center">{{ $medicine->order->subclient->name  }}</td>
+                                @else
+                                    <td class="text-center"></td>
+                                @endif
                                 <td class="text-center">{{ $medicine->patient->name }}, {{ $medicine->patient->lastname }}</td>
                                 <td class="text-center">{{ $medicine->patient->origin }}</td>
                                 <th class="text-center">{{ $medicine->user->name }}</th>
                                 <td class="text-center">
-                                    <a href="{{ route('form.medicina', $medicine) }}" class="btn btn-outline-secondary"><i class="fas fa-file-medical"></i></a>
+                                    @can('Medicina_update')
+                                        <a href="{{ route('form.medicina', $medicine) }}" class="btn btn-outline-secondary"><i class="fas fa-file-medical"></i></a>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach

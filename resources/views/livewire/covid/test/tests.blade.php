@@ -6,9 +6,11 @@
                 <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);">{{ $componentName }}</a></li>
             </ol>
         </nav>
+        @can('Empresa_create')
         <div class="dropdown filter custom-dropdown-icon">
             <a href="javascript:void(0);" class="btn btn-success" data-toggle="modal" data-target="#theModal"><i class="fas fa-flask"></i> Nueva prueba</a>
         </div>
+        @endcan
     </div>
 
     <div class="row">
@@ -56,8 +58,13 @@
                                 </td>
                                 <td class="text-center">{{ $test->created_at->format('Y-m-d') }}</td>
                                 <td class="text-center">
-                                    <a href="javascript:void(0);" wire:click="Edit({{ $test->id }})"  data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit text-warning fa-lg btn btn-outline-warning"></i></a>
-                                    <a href="javascript:void(0);"  onclick="Confirm('{{ $test->id }}', '{{ $test->orders->count() }}')" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt text-danger fa-lg btn btn-outline-danger"></i></a>
+                                    @can('Empresa_update')
+                                        <a href="javascript:void(0);" wire:click="Edit({{ $test->id }})"  data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit text-warning fa-lg btn btn-outline-warning"></i></a>
+                                    @endcan
+
+                                    @can('Empresa_destroy')
+                                        <a href="javascript:void(0);"  onclick="Confirm('{{ $test->id }}', '{{ $test->orders->count() }}')" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt text-danger fa-lg btn btn-outline-danger"></i></a>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach

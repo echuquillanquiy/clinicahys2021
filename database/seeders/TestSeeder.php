@@ -14,6 +14,9 @@ class TestSeeder extends Seeder
      */
     public function run()
     {
-        Test::factory(15)->create();
+        Test::create([
+            'lot' => 'COV-1210630',
+            'brand' => 'HIGHTOP',
+        ]);
     }
 }

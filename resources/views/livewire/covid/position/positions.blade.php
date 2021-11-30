@@ -6,9 +6,11 @@
                 <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);">{{ $componentName }}</a></li>
             </ol>
         </nav>
+        @can('Puesto_create')
         <div class="dropdown filter custom-dropdown-icon">
             <a href="javascript:void(0);" class="btn btn-success" data-toggle="modal" data-target="#theModal"><i class="fas fa-briefcase"></i> Nuevo Puesto</a>
         </div>
+        @endcan
     </div>
 
     <div class="row">
@@ -44,8 +46,13 @@
                                 <td class="text-center">{{ $position->id }}</td>
                                 <td class="text-center">{{ $position->name }}</td>
                                 <td class="text-center">
+                                    @can('Puesto_update')
                                     <a href="javascript:void(0);" wire:click="Edit({{ $position->id }})"  data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit text-warning fa-lg btn btn-outline-warning"></i></a>
-                                    <a href="javascript:void(0);"  onclick="Confirm('{{ $position->id }}', '{{ $position->orders->count() }}')" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt text-danger fa-lg btn btn-outline-danger"></i></a>
+                                    @endcan
+
+                                    @can('Puesto_destroy')
+                                        <a href="javascript:void(0);"  onclick="Confirm('{{ $position->id }}', '{{ $position->orders->count() }}')" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt text-danger fa-lg btn btn-outline-danger"></i></a>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach

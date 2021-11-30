@@ -48,13 +48,22 @@
                             <tr>
                                 <td class="text-center">{{ $order->id }}</td>
                                 <td class="text-center">{{ $order->client->name }}</td>
-                                <td class="text-center">{{ $order->subclient->name  }}</td>
+                                @if($order->subclient_id)
+                                    <td class="text-center">{{ $order->subclient->name }}</td>
+                                @else
+                                    <td class="text-center"></td>
+                                @endif
                                 <td class="text-center">{{ $order->patient->name }}, {{ $order->patient->lastname }}</td>
                                 <td class="text-center">{{ $order->patient->origin }}</td>
                                 <td class="text-center">{{ $order->created_at }}</td>
                                 <td class="text-center">
+
+                                    @can('Auditoria_update')
                                     <a href="{{ route('form.medicina', $order->medicine->id) }}" class="btn btn-outline-secondary"><i class="fas fa-file-medical"></i></a>
+                                    @endcan
+                                    @can('Auditoria_print')
                                     <a href="{{ route('historia', $order) }}" class="btn btn-outline-success" target="_blank"><i class="fas fa-file-pdf"></i></a>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach

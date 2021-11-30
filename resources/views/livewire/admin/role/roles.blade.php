@@ -6,9 +6,11 @@
                 <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);">{{ $componentName }}</a></li>
             </ol>
         </nav>
+        @can('Role_create')
         <div class="dropdown filter custom-dropdown-icon">
             <a href="javascript:void(0);" class="btn btn-success" data-toggle="modal" data-target="#theModal"><i class="fas fa-building"></i> Nueva empresa</a>
         </div>
+        @endcan
     </div>
 
     <div class="row">
@@ -44,8 +46,13 @@
                                 <td class="text-center">{{ $role->id }}</td>
                                 <td class="text-center">{{ $role->name }}</td>
                                 <td class="text-center">
-                                    <a href="javascript:void(0);" wire:click="Edit({{ $role->id }})"  data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit text-warning fa-lg btn btn-outline-warning"></i></a>
-                                    <a href="javascript:void(0);"  onclick="Confirm('{{ $role->id }}')" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt text-danger fa-lg btn btn-outline-danger"></i></a>
+                                    @can('Role_update')
+                                        <a href="javascript:void(0);" wire:click="Edit({{ $role->id }})"  data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit text-warning fa-lg btn btn-outline-warning"></i></a>
+                                    @endcan
+
+                                    @can('Role_destroy')
+                                        <a href="javascript:void(0);"  onclick="Confirm('{{ $role->id }}')" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt text-danger fa-lg btn btn-outline-danger"></i></a>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach
