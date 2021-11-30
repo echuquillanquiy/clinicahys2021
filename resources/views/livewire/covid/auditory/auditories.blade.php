@@ -55,9 +55,13 @@
                                 @endif
                                 <td class="text-center">{{ $order->patient->name }}, {{ $order->patient->lastname }}</td>
                                 @if($order->medicine->temperature)
-                                    <td class="text-center text-success">{{ $order->patient->origin }}</td>
+                                    <td class="text-center">
+                                        <span class="badge badge-info">{{ $order->patient->origin }}</span>
+                                    </td>
                                 @else
-                                    <td class="text-center">{{ $order->patient->origin }}</td>
+                                    <td class="text-center">
+                                        <span class="badge badge-warning">{{ $order->patient->origin }}</span>
+                                    </td>
                                 @endif
                                 <td class="text-center">{{ $order->created_at }}</td>
                                 <td class="text-center">
