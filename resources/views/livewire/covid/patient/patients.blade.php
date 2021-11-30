@@ -9,6 +9,7 @@
         <div class="dropdown filter custom-dropdown-icon">
             <a href="javascript:void(0);" class="btn btn-success" data-toggle="modal" data-target="#theModal"><i class="fas fa-user-circle"></i> Nuevo Paciente</a>
             <a href="{{ route('importar.pacientes') }}" class="btn btn-outline-primary"><i class="fas fa-file-excel"></i> Importar</a>
+            <a href="{{ route('export.patient') }}" class="btn btn-outline-primary"><i class="fas fa-file-excel"></i> Exportar Resultados</a>
         </div>
     </div>
 

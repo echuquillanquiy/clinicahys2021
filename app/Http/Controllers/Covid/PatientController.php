@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Covid;
 
 use App\Http\Controllers\Controller;
+use App\Models\Medicine;
 use App\Models\Patient;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Rap2hpoutre\FastExcel\FastExcel;
 
@@ -45,5 +47,24 @@ class PatientController extends Controller
         });
 
         return view('covid.patients.index');
+    }
+
+    public function exportResult()
+    {
+        return (new FastExcel(Medicine::all()))->download('medicine.xlsx', function ($medicine) {
+            return [
+                'Fecha de atención' => $medicine->created_at->format('Y-m-d'),
+                'Empresa' => $medicine->order->client->name,
+                'DNI' => $medicine->patient->dni,
+                'Nombres' => $medicine->patient->name,
+                'Apellidos' => $medicine->patient->lastname,
+                'Edad' => $medicine->patient->age,
+                'Puesto' => $medicine->order->position->name,
+                'LUGAR DE EVALUACION' => 'H&S OCCUPATIONAL SAC',
+                'Procedencia' => $medicine->patient->origin,
+                'Resultado Laboratorio' => $medicine->order->laboratory->result,
+                'APTO PARA SUBIR A TRANSPORTE' => $medicine->result,
+            ];
+        });
     }
 }

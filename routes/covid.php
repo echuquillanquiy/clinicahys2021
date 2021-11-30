@@ -20,6 +20,7 @@ Route::get('/positions', [PositionController::class, 'index'])->middleware('can:
 Route::get('/patients', [PatientController::class, 'index'])->middleware('can:Paciente_index')->name('pacientes');
 Route::get('/importar-pacientes', [PatientController::class, 'importar'])->name('importar.pacientes');
 Route::post('import-excel-patient', [PatientController::class, 'importExcel'])->name('import.patient');
+Route::get('export-excel-patient', [PatientController::class, 'exportResult'])->name('export.patient');
 Route::get('/orders', [OrderController::class, 'index'])->middleware('can:Orden_index')->name('ordenes');
 Route::get('/medicine', [MedicineController::class, 'index'])->middleware('can:Medicina_index')->name('atenciones.medicina');
 Route::get('/laboratory', [LaboratoryController::class, 'index'])->middleware('can:Laboratorio_index')->name('atenciones.laboratorio');
