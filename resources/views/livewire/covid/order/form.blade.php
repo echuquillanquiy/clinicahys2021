@@ -131,7 +131,7 @@
             <label>PRUEBA</label>
             <select wire:model.lazy="testId" class="form-control">
                 @foreach($tests as $test)
-                    <option value="{{ $test->id }}" selected>{{ $test->brand }}</option>
+                    <option value="{{ $test->id }}" selected>{{ $test->lot }}</option>
                 @endforeach
             </select>
         </div>

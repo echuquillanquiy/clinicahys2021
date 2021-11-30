@@ -125,7 +125,6 @@ class Orders extends Component
             'patient_id' => $this->patientId,
             'client_id' => $this->clientId,
             'position_id' => $this->positionId,
-            'subclient_id' => $this->subclientId,
             'test_id' => $this->testId
         ]);
 
