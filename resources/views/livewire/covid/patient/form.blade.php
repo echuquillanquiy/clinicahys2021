@@ -16,21 +16,6 @@
         </div>
     </div>
 
-    <div class="col-xl-4">
-        <div class="form-group">
-            <label class="control-label">NOMBRES COMPLETOS:</label>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <div class="input-group-text"><i class="fas fa-edit"></i></div>
-                </div>
-                <input type="text" wire:model.lazy="name" class="form-control" >
-            </div>
-            @error('name')
-                <span class="text-danger er">{{ $message }}</span>
-            @enderror
-        </div>
-    </div>
-
     <div class="col-xl-5">
         <div class="form-group mb-4">
             <label class="control-label">APELLIDOS COMPLETOS:</label>
@@ -41,6 +26,21 @@
                 <input type="text" wire:model.lazy="lastname" class="form-control" >
             </div>
             @error('lastname')
+            <span class="text-danger er">{{ $message }}</span>
+            @enderror
+        </div>
+    </div>
+
+    <div class="col-xl-4">
+        <div class="form-group">
+            <label class="control-label">NOMBRES COMPLETOS:</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="fas fa-edit"></i></div>
+                </div>
+                <input type="text" wire:model.lazy="name" class="form-control" >
+            </div>
+            @error('name')
                 <span class="text-danger er">{{ $message }}</span>
             @enderror
         </div>
