@@ -184,6 +184,7 @@ class Patients extends Component
         $this->age = 0;
         $this->origin = 'HUANCAYO';
         $this->selected_id = 0;
+        $this->image = '';
     }
 
     protected $listeners = ['deleteRow' => 'Destroy'];
