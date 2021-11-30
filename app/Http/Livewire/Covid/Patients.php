@@ -182,7 +182,7 @@ class Patients extends Component
         $this->lastname = '';
         $this->birthday = '';
         $this->age = 0;
-        $this->origin = 'Elegir';
+        $this->origin = 'HUANCAYO';
         $this->selected_id = 0;
     }
 
