@@ -212,10 +212,10 @@ class Orders extends Component
         $this->dni = '';
         $this->name = '';
         $this->lastname = '';
-        $this->clientId = null;
-        $this->positionId = null;
+        $this->clientId = 1;
+        $this->positionId = 1;
         $this->subclientId = null;
-        $this->testId = null;
+        $this->testId = 1;
         $this->selected_id = null;
         $this->search = '';
         $this->resetValidation();
