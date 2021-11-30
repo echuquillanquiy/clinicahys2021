@@ -54,7 +54,7 @@
                                     <td class="text-center"></td>
                                 @endif
                                 <td class="text-center">{{ $order->patient->name }}, {{ $order->patient->lastname }}</td>
-                                @if($order->medical->temperature)
+                                @if($order->medicacine->temperature)
                                     <td class="text-center text-success">{{ $order->patient->origin }}</td>
                                 @else
                                     <td class="text-center">{{ $order->patient->origin }}</td>
