@@ -40,6 +40,7 @@
                             <th>CORREO ELECTRONICO</th>
                             <th>PERFIL</th>
                             <th>SELLO</th>
+                            <th>LOCAL</th>
                             <th>ESTADO</th>
                             <th class="text-center">Opciones</th>
                         </tr>
@@ -51,6 +52,7 @@
                                 <td class="text-center">{{ $user->name }}</td>
                                 <td class="text-center">{{ $user->email }}</td>
                                 <td class="text-center">{{ $user->profile }}</td>
+                                <td class="text-center">{{ $user->place }}</td>
                                 <td class="text-center">
                                     @if($user->photo_profile_url = null)
                                         <span class="badge badge-danger"> NO </span>

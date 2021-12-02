@@ -13,7 +13,7 @@ class Users extends Component
 {
     use WithPagination;
 
-    public $pageTitle, $componentName, $search, $pageSelected, $selected_id, $name, $email, $status, $password, $profile;
+    public $pageTitle, $componentName, $search, $pageSelected, $selected_id, $name, $email, $status, $password, $profile, $place;
 
     protected $paginationTheme = 'bootstrap';
 
@@ -28,6 +28,7 @@ class Users extends Component
         $this->componentName = 'Usuarios';
         $this->pageSelected = 10;
         $this->status = 'Elegir';
+        $this->place = 'Elegir';
     }
 
     public function render()
@@ -51,6 +52,7 @@ class Users extends Component
         $this->search = '';
         $this->status = 'Elegir';
         $this->selected_id = 0;
+        $this->place = 'Elegir';
         $this->resetValidation();
     }
 
@@ -61,6 +63,7 @@ class Users extends Component
         $this->email = $user->email;
         $this->profile = $user->profile;
         $this->status = $user->status;
+        $this->place = $user->place;
         $this->password = '';
 
         $this->emit('show-modal', 'Show Modal!');
@@ -102,6 +105,7 @@ class Users extends Component
             'email' => $this->email,
             'status' => $this->status,
             'profile' => $this->profile,
+            'place' => $this->place,
             'password' => bcrypt($this->password)
         ]);
 
@@ -118,7 +122,7 @@ class Users extends Component
             'email' => "required|email|unique:users,email,{$this->selected_id}",
             'status' => 'required|not_in:Elegir',
             'profile' => 'required|not_in:Elegir',
-            'password' => 'required|min:3'
+            'password' => 'min:3'
         ];
 
         $messages = [
@@ -129,8 +133,6 @@ class Users extends Component
             'email.unique' => 'El correo ya existe en el sistema.',
             'status.required' => 'Selecciona el estado para el usuario.',
             'profile.required' => 'Seleccione el perfil /role del usuario.',
-            'password.required' => 'Ingresa una contraseña.',
-            'password.min' => 'el password debe tener minimo 3 caracteres.',
             'status.not_in' => 'Selecciona un estado distinto a Elegir.',
             'profile.not_in' => 'Selecciona un perfil/role distinto a Elegir.',
         ];
@@ -139,13 +141,23 @@ class Users extends Component
 
         $user = User::find($this->selected_id);
 
-        $user->update([
-            'name' => $this->name,
-            'email' => $this->email,
-            'status' => $this->status,
-            'profile' => $this->profile,
-            'password' => bcrypt($this->password)
-        ]);
+        if ($this->password)
+            $user->update([
+                'name' => $this->name,
+                'email' => $this->email,
+                'status' => $this->status,
+                'profile' => $this->profile,
+                'place' => $this->place,
+                'password' => bcrypt($this->password)
+            ]);
+        else
+            $user->update([
+                'name' => $this->name,
+                'email' => $this->email,
+                'status' => $this->status,
+                'profile' => $this->profile,
+                'place' => $this->place,
+            ]);
 
         $user->syncRoles($this->profile);
 

@@ -60,6 +60,21 @@
         @enderror
     </div>
 
+    <div class="col-xl-4">
+        <div class="form-group">
+            <label>SEDE:</label>
+            <select wire:model.lazy="place" class="form-control">
+                <option value="Elegir">[Elegir]</option>
+                <option value="HUANCAYO">HUANCAYO</option>
+                <option value="HUANCAVELICA">HUANCAVELICA</option>
+                <option value="TODOS">TODOS</option>
+            </select>
+        </div>
+        @error('place')
+        <span class="text-danger er">{{ $message }}</span>
+        @enderror
+    </div>
+
     <div class="col-xl-7">
         <div class="form-group">
             <label class="control-label">CONTRASEÑA:</label>

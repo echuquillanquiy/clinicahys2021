@@ -18,7 +18,8 @@ class UserSeeder extends Seeder
             'name' => 'Eduardo Chuquillanqui',
             'email' => 'echuquillanquiy@gmail.com',
             'password' => bcrypt('12345678'),
-            'profile' => 'Admin'
+            'profile' => 'Admin',
+            'place' => 'HUANCAYO'
         ]);
 
         $user->syncRoles(['Admin']);
