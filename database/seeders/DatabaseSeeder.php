@@ -19,8 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ClientSeeder::class);
         $this->call(TestSeeder::class);
         $this->call(PositionSeeder::class);
-
-        //$this->call(PatientSeeder::class);
+        $this->call(PatientSeeder::class);
 
     }
 }

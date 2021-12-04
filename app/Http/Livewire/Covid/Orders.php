@@ -15,7 +15,7 @@ class Orders extends Component
 {
     use WithPagination;
 
-    public $pageTitle, $componentName, $search, $pageSelected, $selected_id,$userId, $patientId, $positionId, $clientId, $subclientId, $testId, $dni = null, $name = null, $lastname = null, $dateFilter;
+    public $pageTitle, $componentName, $search, $pageSelected, $selected_id,$userId, $patientId, $positionId, $clientId, $testId, $dni = null, $name = null, $lastname = null, $dateFilter;
 
     public function mount()
     {
@@ -43,34 +43,45 @@ class Orders extends Component
         $positions = Position::all('id', 'name');
         $tests = Test::where('status', 'VIGENTE')->get();
 
-        /*if ($this->search && auth()->user()->place = 'HUANCAYO') {
+        if ($placeuser == "HUANCAYO") {
             $orders = Order::join('patients as pat', 'pat.id', 'orders.patient_id')
-                ->select('orders.*', 'pat.lastname as apellidos', 'pat.name as nombres', 'pat.origin as procedencia')
-                ->where('pat.lastname', 'LIKE', '%' . $this->search . '%')
+                ->select('orders.*', 'pat.origin as procedencia', 'pat.lastname as apellidos', 'orders.created_at as fecha')
                 ->where('pat.origin', 'LIKE', 'HUANCAYO')
-                ->orWhere('pat.name', 'LIKE', '%' . $this->search . '%')
-                ->orderBy('id', 'desc')
+                ->whereDate('orders.created_at', 'LIKE', $this->dateFilter)
+                ->where('pat.lastname', 'LIKE', '%' . $this->search . '%')
+                ->orderBy('id', 'asc')
                 ->paginate($this->pageSelected);
-        } else*/if ($placeuser == "HUANCAYO") {
-        $orders = Order::join('patients as pat', 'pat.id', 'orders.patient_id')
-            ->select('orders.*', 'pat.origin as procedencia', 'orders.created_at as fecha')
-            ->where('pat.origin', 'LIKE', 'HUANCAYO')
-            ->whereDate('orders.created_at', 'LIKE', $this->dateFilter)
-            ->orderBy('id', 'asc')
-            ->paginate($this->pageSelected);
-    } elseif ($placeuser == "HUANCAVELICA")  {
-        $orders = Order::join('patients as pat', 'pat.id', 'orders.patient_id')
-            ->select('orders.*', 'pat.origin as procedencia', 'orders.created_at as fecha')
-            ->whereDate('orders.created_at', 'LIKE', $this->dateFilter)
-            ->where('pat.origin', 'LIKE', 'HUANCAVELICA')
-            ->orderBy('id', 'asc')
-            ->paginate($this->pageSelected);
-    }else {
-        $orders = Order::join('patients as pat', 'pat.id', 'orders.patient_id')
-            ->select('orders.*', 'pat.origin as procedencia', 'orders.created_at as fecha')
-            ->whereDate('orders.created_at', 'LIKE', $this->dateFilter)
-            ->orderBy('id', 'asc')
-            ->paginate($this->pageSelected);
+        } elseif ($placeuser == "HUANCAVELICA") {
+            $orders = Order::join('patients as pat', 'pat.id', 'orders.patient_id')
+                ->select('orders.*', 'pat.origin as procedencia', 'orders.created_at as fecha')
+                ->whereDate('orders.created_at', 'LIKE', $this->dateFilter)
+                ->where('pat.origin', 'LIKE', 'HUANCAVELICA')
+                ->where('pat.lastname', 'LIKE', '%' . $this->search . '%')
+                ->orderBy('id', 'asc')
+                ->paginate($this->pageSelected);
+        } elseif ($placeuser == "LIMA") {
+            $orders = Order::join('patients as pat', 'pat.id', 'orders.patient_id')
+                ->select('orders.*', 'pat.origin as procedencia', 'orders.created_at as fecha')
+                ->whereDate('orders.created_at', 'LIKE', $this->dateFilter)
+                ->where('pat.origin', 'LIKE', 'LIMA')
+                ->where('pat.lastname', 'LIKE', '%' . $this->search . '%')
+                ->orderBy('id', 'asc')
+                ->paginate($this->pageSelected);
+        } elseif ($placeuser == "PASCO") {
+            $orders = Order::join('patients as pat', 'pat.id', 'orders.patient_id')
+                ->select('orders.*', 'pat.origin as procedencia', 'orders.created_at as fecha')
+                ->whereDate('orders.created_at', 'LIKE', $this->dateFilter)
+                ->where('pat.origin', 'LIKE', 'PASCO')
+                ->where('pat.lastname', 'LIKE', '%' . $this->search . '%')
+                ->orderBy('id', 'asc')
+                ->paginate($this->pageSelected);
+        }else {
+            $orders = Order::join('patients as pat', 'pat.id', 'orders.patient_id')
+                ->select('orders.*', 'pat.origin as procedencia', 'orders.created_at as fecha')
+                ->whereDate('orders.created_at', 'LIKE', $this->dateFilter)
+                ->where('pat.lastname', 'LIKE', '%' . $this->search . '%')
+                ->orderBy('id', 'asc')
+                ->paginate($this->pageSelected);
     }
 
         return view('livewire.covid.order.orders', compact('orders', 'clients', 'positions', 'tests'));
@@ -105,7 +116,6 @@ class Orders extends Component
         $this->dni = $order->patient->dni;
         $this->clientId = $order->client_id;
         $this->positionId = $order->position_id;
-        $this->subclientId = $order->subclient_id;
         $this->testId = $order->test_id;
         $this->selected_id = $order->id;
 
@@ -184,7 +194,6 @@ class Orders extends Component
             'patientId' => 'required',
             'positionId' => 'required|not_in:Elegir',
             'clientId' => 'required|not_in:Elegir',
-            'subclientId' => 'required|not_in:Elegir',
             'testId' => 'required|not_in:Elegir',
         ];
 
@@ -194,8 +203,6 @@ class Orders extends Component
             'positionId.not_in' => 'Elige una una opción diferente a Elegir.',
             'clientId.required' => 'El campo es requerido.',
             'clientId.not_in' => 'Elige una una opción diferente a Elegir.',
-            'subclientId.required' => 'El campo es requerido.',
-            'subclientId.not_in' => 'Elige una una opción diferente a Elegir.',
             'testId.required' => 'El campo es requerido.',
             'testId.not_in' => 'Elige una una opción diferente a Elegir.',
         ];
@@ -209,13 +216,12 @@ class Orders extends Component
             'patient_id' => $this->patientId,
             'client_id' => $this->clientId,
             'position_id' => $this->positionId,
-            'subclient_id' => $this->subclientId,
             'test_id' => $this->testId
         ]);
 
         $data = [
             'order_id' => $order->id,
-            'user_id' => $order->user_id
+            'user_id' => $order->user_id,
         ];
 
         $medicine = $order->medicine()->update($data);

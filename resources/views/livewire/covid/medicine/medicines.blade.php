@@ -60,7 +60,7 @@
                                 <th class="text-center">{{ $medicine->user->name }}</th>
                                 <td class="text-center">
                                     @can('Medicina_update')
-                                        <a href="{{ route('form.medicina', $medicine) }}" class="btn btn-outline-secondary"><i class="fas fa-file-medical"></i></a>
+                                        <a href="{{ route('form.medicina', $medicine) }}" class="btn btn-outline-secondary" target="_blank"><i class="fas fa-file-medical"></i></a>
                                     @endcan
                                 </td>
                             </tr>

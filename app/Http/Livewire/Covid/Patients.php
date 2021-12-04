@@ -27,7 +27,7 @@ class Patients extends Component
     public function mount()
     {
         $this->pageTitle = "Listado";
-        $this->componentName = "Empresas Clientes";
+        $this->componentName = "Pacientes";
         $this->pageSelected = 10;
         $this->origin = 'HUANCAYO';
         $this->calcEdad();
@@ -35,15 +35,38 @@ class Patients extends Component
 
     public function render()
     {
-        if ($this->search)
+        if (auth()->user()->place == "HUANCAYO")
+        {
+            $patients = Patient::orderBy('id', 'desc')
+                ->where('origin', 'LIKE', 'HUANCAYO')
+                ->where('dni', 'LIKE', '%' . $this->search . '%')
+                ->where('name', 'LIKE', '%' . $this->search . '%')
+                ->where('lastname', 'LIKE', '%' . $this->search . '%')
+                ->paginate($this->pageSelected);
+        } elseif (auth()->user()->place == "LIMA") {
+            $patients = Patient::orderBy('id', 'desc')
+                ->where('origin', 'LIKE', 'LIMA')
+                ->where('dni', 'LIKE', '%' . $this->search . '%')
+                ->where('name', 'LIKE', '%' . $this->search . '%')
+                ->where('lastname', 'LIKE', '%' . $this->search . '%')
+                ->paginate($this->pageSelected);
+
+        } elseif (auth()->user()->place == "HUANCAVELICA") {
+            $patients = Patient::orderBy('id', 'desc')
+                ->where('origin', 'LIKE', 'HUANCAVELICA')
+                ->where('dni', 'LIKE', '%' . $this->search . '%')
+                ->where('name', 'LIKE', '%' . $this->search . '%')
+                ->where('lastname', 'LIKE', '%' . $this->search . '%')
+                ->paginate($this->pageSelected);
+        } else {
             $patients = Patient::orderBy('id', 'desc')
                 ->where('dni', 'LIKE', '%' . $this->search . '%')
                 ->orWhere('name', 'LIKE', '%' . $this->search . '%')
                 ->orWhere('lastname', 'LIKE', '%' . $this->search . '%')
                 ->paginate($this->pageSelected);
-        else
-            $patients = Patient::orderBy('id', 'desc')
-                ->paginate($this->pageSelected);
+        }
+
+
 
         return view('livewire.covid.patient.patients', compact('patients'));
     }

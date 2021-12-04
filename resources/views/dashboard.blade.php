@@ -11,7 +11,7 @@
             <div class="camera"></div>
             <div class="display" >
                 <div class="artboard phone-1 artboard-demo" style="background-image: url({{ asset('img/dashboard/adm.jpg') }}); background-repeat: no-repeat; background-size: 120%">
-                    <a href="{{ route('admininistrador') }}" class="btn btn-error btn-lg" target="_blank">ADMINISTRADOR</a>
+                    <a href="{{ route('admininistrador') }}" class="btn btn-error btn-lg">ADMINISTRADOR</a>
                 </div>
             </div>
         </div>
@@ -20,7 +20,7 @@
             <div class="camera"></div>
             <div class="display">
                 <div class="artboard phone-1 artboard-demo" style="background-image: url({{ asset('img/dashboard/dia.jpg') }}); background-repeat: no-repeat; background-size: 120%; opacity: 80%">
-                    <a href="http://hedial.clinicahys.com/login" class="btn btn-primary btn-lg" target="_blank">HEMODIALISIS</a>
+                    <a href="http://hedial.clinicahys.com/login" class="btn btn-primary btn-lg">HEMODIALISIS</a>
                 </div>
             </div>
             </div>
@@ -29,7 +29,7 @@
             <div class="camera"></div>
             <div class="display">
                 <div class="artboard phone-1 artboard-demo" style="background-image: url({{ asset('img/dashboard/lab.jpg') }}); background-repeat: no-repeat; background-size: 120%">
-                    <a href="{{ route('covid.index') }}" class="btn btn-accent btn-lg" target="_blank">COVID - 19</a>
+                    <a href="{{ route('covid.index') }}" class="btn btn-accent btn-lg">COVID - 19</a>
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
             <div class="camera"></div>
             <div class="display">
                 <div class="artboard phone-1 artboard-demo" style="background-image: url({{ asset('img/dashboard/ent.jpg') }}); background-repeat: no-repeat; background-size: 120%">
-                    <a href="#" class="btn btn-lg" target="_blank">Entrevistadores</a>
+                    <a href="#" class="btn btn-lg">Entrevistadores</a>
                 </div>
             </div>
         </div>
@@ -47,7 +47,7 @@
             <div class="camera"></div>
             <div class="display">
                 <div class="artboard phone-1 artboard-demo" style="background-image: url({{ asset('img/dashboard/busi.jpg') }}); background-repeat: no-repeat; background-size: 120%; opacity: 80%">
-                    <a href="#" class="btn btn-secondary btn-lg" target="_blank">Empresas</a>
+                    <a href="#" class="btn btn-secondary btn-lg">Empresas</a>
                 </div>
             </div>
         </div>

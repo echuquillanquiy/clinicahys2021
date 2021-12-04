@@ -82,6 +82,8 @@
             <select wire:model.lazy="origin" class="form-control">
                 <option value="HUANCAYO">HUANCAYO</option>
                 <option value="HUANCAVELICA">HUANCAVELICA</option>
+                <option value="PASCO">PASCO</option>
+                <option value="LIMA">LIMA</option>
             </select>
         </div>
         @error('origin')

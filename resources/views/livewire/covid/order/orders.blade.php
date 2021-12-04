@@ -44,24 +44,29 @@
                             <th>PACIENTE</th>
                             <th>PUESTO</th>
                             <th>PRUEBA</th>
+                            <th>SEDE</th>
                             <th>Encargado</th>
                             <th class="text-center w-25">Opciones</th>
                         </tr>
                         </thead>
                         <tbody>
+
                         @foreach($orders as $order)
                             <tr>
-                                <td class="text-center">{{ $order->id }}</td>
+                                <td class="text-center">
+                                        {{ $order->id }}
+                                </td>
                                 <td class="text-center">{{ $order->created_at }}</td>
                                 <td class="text-center">{{ $order->client->name }}</td>
                                 @if($order->subclient_id)
-                                <td class="text-center">{{ $order->subclient->name }}</td>
+                                    <td class="text-center">{{ $order->subclient->name }}</td>
                                 @else
                                     <td class="text-center"></td>
                                 @endif
                                 <td class="text-center">{{ $order->patient->name }}, {{ $order->patient->lastname }}</td>
                                 <td class="text-center">{{ $order->position->name }}</td>
                                 <td class="text-center">{{ $order->test->brand }}</td>
+                                <td class="text-center">{{ $order->patient->origin }}</td>
                                 <td class="text-center">{{ $order->user->name }}</td>
                                 <td class="text-center">
                                     <a href="javascript:void(0);" wire:click="Edit({{ $order->id }})"  data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit text-warning fa-lg btn btn-outline-warning"></i></a>

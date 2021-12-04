@@ -19,6 +19,6 @@ class AuditoriaController extends Controller
     {
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadView('covid.auditories.historia', compact('order'));
-        return $pdf->stream($order->patient->name . " " . $order->patient->lastname . "_" . $order->created_at->format('Y-m-d').".pdf");
+        return $pdf->stream($order->patient->name . "_" . $order->patient->lastname . "_" . $order->created_at->format('Y-m-d') . "_" . $order->patient->origin . ".pdf");
     }
 }

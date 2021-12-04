@@ -40,7 +40,9 @@
                             <th>NOMBRES Y APELLIDOS</th>
                             <th>LUGAR DE PROCEDENCIA</th>
                             <th>FECHA DE ATENCIÓN</th>
-                            <th>Resultados</th>
+                            <th>ESTADO</th>
+                            <th>MEDICINA</th>
+                            <th>IMPRESIÓN</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -54,23 +56,38 @@
                                     <td class="text-center"></td>
                                 @endif
                                 <td class="text-center">{{ $order->patient->name }}, {{ $order->patient->lastname }}</td>
-                                @if($order->medicine->temperature)
-                                    <td class="text-center">
-                                        <span class="badge badge-info">{{ $order->patient->origin }}</span>
+
+                                <td class="text-center">
+                                    <span class="badge badge-outline-info">{{ $order->patient->origin }}</span>
+                                </td>
+
+                                <td class="text-center">{{ $order->created_at }}</td>
+
+                                @if($order->medicine->temperature && $order->medicine->fc && $order->medicine->spo2 && $order->patient->image)
+                                    <td>
+                                        <span class="badge badge-success">COMPLETADO</span>
                                     </td>
                                 @else
-                                    <td class="text-center">
-                                        <span class="badge badge-warning">{{ $order->patient->origin }}</span>
+                                    <td>
+                                        <span class="badge badge-warning">EN PROCESO</span>
                                     </td>
                                 @endif
-                                <td class="text-center">{{ $order->created_at }}</td>
-                                <td class="text-center">
 
+                                <td class="text-center">
                                     @can('Auditoria_update')
-                                    <a href="{{ route('form.medicina', $order->medicine->id) }}" class="btn btn-outline-secondary"><i class="fas fa-file-medical"></i></a>
+                                    <a href="{{ route('form.medicina', $order->medicine->id) }}" class="btn btn-outline-secondary" target="_top"><i class="fas fa-file-medical"></i></a>
                                     @endcan
+                                </td>
+
+                                <td class="text-center">
                                     @can('Auditoria_print')
-                                    <a href="{{ route('historia', $order) }}" class="btn btn-outline-success" target="_blank"><i class="fas fa-file-pdf"></i></a>
+                                        @if($order->medicine->temperature && $order->medicine->fc && $order->medicine->spo2 && $order->patient->image)
+                                            <a href="{{ route('historia', $order) }}" class="btn btn-outline-success" target="_blank"></a>
+                                        @else
+                                            <div>
+                                                <i class="text-info far fa-clock fa-2x"></i>
+                                            </div>
+                                        @endif
                                     @endcan
                                 </td>
                             </tr>

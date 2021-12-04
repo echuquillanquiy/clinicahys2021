@@ -30,17 +30,48 @@ class Auditories extends Component
 
     public function render()
     {
-        if ($this->search)
+        $placeuser = auth()->user()->place;
+
+        if ($placeuser == "HUANCAYO") {
             $orders = Order::join('patients as pat', 'pat.id', 'orders.patient_id')
-                ->select('orders.*', 'pat.lastname as apellidos', 'pat.name as nombres')
+                ->select('orders.*', 'pat.origin as procedencia', 'pat.lastname as apellidos', 'orders.created_at as fecha')
+                ->where('pat.origin', 'LIKE', 'HUANCAYO')
+                ->whereDate('orders.created_at', 'LIKE', $this->dateFilter)
                 ->where('pat.lastname', 'LIKE', '%' . $this->search . '%')
-                ->orWhere('pat.name', 'LIKE', '%' . $this->search . '%')
-                ->orderBy('id', 'desc')
+                ->orderBy('id', 'asc')
                 ->paginate($this->pageSelected);
-        else
-            $orders = Order::orderBy('id', 'asc')
-                ->where('created_at', 'LIKE', '%' . $this->dateFilter . '%')
+        } elseif ($placeuser == "HUANCAVELICA") {
+            $orders = Order::join('patients as pat', 'pat.id', 'orders.patient_id')
+                ->select('orders.*', 'pat.origin as procedencia', 'orders.created_at as fecha')
+                ->whereDate('orders.created_at', 'LIKE', $this->dateFilter)
+                ->where('pat.origin', 'LIKE', 'HUANCAVELICA')
+                ->where('pat.lastname', 'LIKE', '%' . $this->search . '%')
+                ->orderBy('id', 'asc')
                 ->paginate($this->pageSelected);
+        } elseif ($placeuser == "LIMA") {
+            $orders = Order::join('patients as pat', 'pat.id', 'orders.patient_id')
+                ->select('orders.*', 'pat.origin as procedencia', 'orders.created_at as fecha')
+                ->whereDate('orders.created_at', 'LIKE', $this->dateFilter)
+                ->where('pat.origin', 'LIKE', 'LIMA')
+                ->where('pat.lastname', 'LIKE', '%' . $this->search . '%')
+                ->orderBy('id', 'asc')
+                ->paginate($this->pageSelected);
+        } elseif ($placeuser == "PASCO") {
+            $orders = Order::join('patients as pat', 'pat.id', 'orders.patient_id')
+                ->select('orders.*', 'pat.origin as procedencia', 'orders.created_at as fecha')
+                ->whereDate('orders.created_at', 'LIKE', $this->dateFilter)
+                ->where('pat.origin', 'LIKE', 'PASCO')
+                ->where('pat.lastname', 'LIKE', '%' . $this->search . '%')
+                ->orderBy('id', 'asc')
+                ->paginate($this->pageSelected);
+        }else {
+            $orders = Order::join('patients as pat', 'pat.id', 'orders.patient_id')
+                ->select('orders.*', 'pat.origin as procedencia', 'orders.created_at as fecha')
+                ->whereDate('orders.created_at', 'LIKE', $this->dateFilter)
+                ->where('pat.lastname', 'LIKE', '%' . $this->search . '%')
+                ->orderBy('id', 'asc')
+                ->paginate($this->pageSelected);
+        }
 
         return view('livewire.covid.auditory.auditories', compact('orders'));
     }

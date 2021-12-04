@@ -149,6 +149,7 @@
                         <div class="media-body align-self-center">
                             <h6>{{ auth()->user()->name }}</h6>
                             <p>{{ auth()->user()->email }}</p>
+                            <p>{{ auth()->user()->place }}</p>
                         </div>
                         <img src="{{ auth()->user()->profile_photo_url }}" class="img-fluid" alt="admin-profile">
 
@@ -167,9 +168,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="user-profile-section">
+                    <div class="user-profile-section mt-0">
                         <div class="media mx-auto slack">
-                            <i class="fas fa-address-card text-secondary mr-2"></i>
+                            <i class="fas fa-address-card text-secondary"></i>
                             <div class="media-body">
                                 <h5>
                                     <a href="{{ route('profile.show') }}"> Perfil</a>

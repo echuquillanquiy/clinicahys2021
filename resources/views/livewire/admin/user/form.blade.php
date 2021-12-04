@@ -67,6 +67,8 @@
                 <option value="Elegir">[Elegir]</option>
                 <option value="HUANCAYO">HUANCAYO</option>
                 <option value="HUANCAVELICA">HUANCAVELICA</option>
+                <option value="PASCO">PASCO</option>
+                <option value="LIMA">LIMA</option>
                 <option value="TODOS">TODOS</option>
             </select>
         </div>

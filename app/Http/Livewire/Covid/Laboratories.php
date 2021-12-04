@@ -25,21 +25,51 @@ class Laboratories extends Component
         $this->pageTitle = 'Listado Resultado';
         $this->componentName = 'Laboratorio Covid-19';
         $this->dateFilter = Carbon::now()->format('Y-m-d');
-        $this->pageSelected = 1;
+        $this->pageSelected = 25;
     }
 
     public function render()
     {
-        if ($this->search)
-            $laboratories = Laboratory::join('patients as pat', 'pat.id', 'laboratories.patient_id')
-                ->select('laboratories.*', 'pat.lastname as apellidos', 'pat.name as nombres')
+        $placesuser = auth()->user()->place;
+
+        if ($placesuser == "HUANCAYO")
+            $laboratories= Laboratory::join('patients as pat', 'pat.id', 'laboratories.patient_id')
+                ->select('laboratories.*', 'pat.origin as procedencia', 'pat.lastname as apellidos', 'laboratories.created_at as fecha')
+                ->where('pat.origin', 'LIKE', 'HUANCAYO')
+                ->whereDate('laboratories.created_at', 'LIKE', $this->dateFilter)
                 ->where('pat.lastname', 'LIKE', '%' . $this->search . '%')
-                ->orWhere('pat.name', 'LIKE', '%' . $this->search . '%')
-                ->orderBy('id', 'desc')
+                ->orderBy('id', 'asc')
+                ->paginate($this->pageSelected);
+        elseif ($placesuser == "HUANCAVELICA")
+            $laboratories= Laboratory::join('patients as pat', 'pat.id', 'laboratories.patient_id')
+                ->select('laboratories.*', 'pat.origin as procedencia', 'pat.lastname as apellidos', 'laboratories.created_at as fecha')
+                ->where('pat.origin', 'LIKE', 'HUANCAVELICA')
+                ->whereDate('laboratories.created_at', 'LIKE', $this->dateFilter)
+                ->where('pat.lastname', 'LIKE', '%' . $this->search . '%')
+                ->orderBy('id', 'asc')
+                ->paginate($this->pageSelected);
+        elseif ($placesuser == "LIMA")
+            $laboratories= Laboratory::join('patients as pat', 'pat.id', 'laboratories.patient_id')
+                ->select('laboratories.*', 'pat.origin as procedencia', 'pat.lastname as apellidos', 'laboratories.created_at as fecha')
+                ->where('pat.origin', 'LIKE', 'LIMA')
+                ->whereDate('laboratories.created_at', 'LIKE', $this->dateFilter)
+                ->where('pat.lastname', 'LIKE', '%' . $this->search . '%')
+                ->orderBy('id', 'asc')
+                ->paginate($this->pageSelected);
+        elseif ($placesuser == "PASCO")
+            $laboratories= Laboratory::join('patients as pat', 'pat.id', 'laboratories.patient_id')
+                ->select('laboratories.*', 'pat.origin as procedencia', 'pat.lastname as apellidos', 'laboratories.created_at as fecha')
+                ->where('pat.origin', 'LIKE', 'PASCO')
+                ->whereDate('laboratories.created_at', 'LIKE', $this->dateFilter)
+                ->where('pat.lastname', 'LIKE', '%' . $this->search . '%')
+                ->orderBy('id', 'asc')
                 ->paginate($this->pageSelected);
         else
-            $laboratories = Laboratory::orderBy('id', 'desc')
-                ->where('created_at', 'LIKE', '%' . $this->dateFilter . '%')
+            $laboratories= Laboratory::join('patients as pat', 'pat.id', 'laboratories.patient_id')
+                ->select('laboratories.*', 'pat.origin as procedencia', 'pat.lastname as apellidos', 'laboratories.created_at as fecha')
+                ->whereDate('laboratories.created_at', 'LIKE', $this->dateFilter)
+                ->where('pat.lastname', 'LIKE', '%' . $this->search . '%')
+                ->orderBy('id', 'asc')
                 ->paginate($this->pageSelected);
 
         return view('livewire.covid.laboratory.laboratories', compact('laboratories'));

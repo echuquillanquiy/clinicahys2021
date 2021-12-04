@@ -39,6 +39,7 @@
                             <th>NOMBRES Y APELLIDOS</th>
                             <th>TIPO DE PRUEBA</th>
                             <th>RESULTADO</th>
+                            <th>SEDE</th>
                             <th>USUARIO QUE REGISTRA RESULTADO</th>
                             <th>Opciones</th>
                         </tr>
@@ -63,8 +64,8 @@
                                         <a href="javascript:void(0)" href="#" class="text-center badge badge-success">{{ $laboratory->result }}</a>
                                     @endif
                                 </td>
-
-                                <th class="text-center">{{ $laboratory->order->user->name }}</th>
+                                <td class="text-center">{{ $laboratory->order->patient->origin }}</td>
+                                <td class="text-center">{{ $laboratory->order->user->name }}</td>
                                 <td class="text-center">
                                     @can('Laboratorio_update')
                                     <a href="javascript:void(0);" wire:click="Edit({{ $laboratory->id }})" title="Registrar" data-toggle="modal" data-target="#theModal" class="btn btn-outline-secondary">Registrar Resultado</a>
