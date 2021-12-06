@@ -28,7 +28,8 @@ class UserSeeder extends Seeder
             'name' => 'Minera Caraveli',
             'email' => 'avillanueva@cmc.com.pe',
             'password' => bcrypt('12345678'),
-            'profile' => 'Empresa'
+            'profile' => 'Empresa',
+            'place' => 'TODOS'
         ]);
 
         $user->syncRoles(['Empresa']);

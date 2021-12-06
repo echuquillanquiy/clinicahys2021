@@ -170,7 +170,7 @@
                     </div>
                     <div class="user-profile-section mt-0">
                         <div class="media mx-auto slack">
-                            <i class="fas fa-address-card text-secondary"></i>
+                            <i class="fas fa-address-card text-secondary mr-2"></i>
                             <div class="media-body">
                                 <h5>
                                     <a href="{{ route('profile.show') }}"> Perfil</a>

@@ -198,5 +198,18 @@ class PermissionSeeder extends Seeder
         Permission::create([
             'name' => 'Resultado_index'
         ]);
+
+        Permission::create([
+            'name' => 'ADMINISTRADOR'
+        ]);
+        Permission::create([
+            'name' => 'HEMODIALISIS'
+        ]);
+        Permission::create([
+            'name' => 'COVID-19'
+        ]);
+        Permission::create([
+            'name' => 'ENTREVISTADORES'
+        ]);
     }
 }
