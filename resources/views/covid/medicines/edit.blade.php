@@ -28,6 +28,7 @@
                     @method('PUT')
                     <div class="row">
 
+                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                         <div class="col-xl-6 mt-1">
                             <div class="bg-primary rounded-lg">
                                 <p class="text-center text-white font-bold h5">ANTECEDENTES PERSONALES / FAMILIARES</p>

@@ -160,7 +160,7 @@
 <table style="width: 100%; font-size: 0.9rem; border: #0c0b0e 2px solid; align-content: center">
     <tr>
         <th style="text-align: center"><img src="{{ asset('storage/patients_huella_firma/' . $order->patient->image) }}" style="width: 30%"></th>
-        <th style="text-align: center"><img src="{{ $order->user->profile_photo_url }}" style="width: 30%"></th>
+        <th style="text-align: center"><img src="{{ $order->medicine->user->profile_photo_url }}" style="width: 30%"></th>
     </tr>
     <tr>
         <th>FIRMA Y HUELLA DEL PACIENTE</th>

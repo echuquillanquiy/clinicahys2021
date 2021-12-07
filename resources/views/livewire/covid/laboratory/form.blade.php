@@ -2,6 +2,7 @@
 
 <div class="row">
 
+    <input type="hidden" value="">
     <div class="col-xl-4">
         <div class="form-group">
             <label>ESTADO</label>

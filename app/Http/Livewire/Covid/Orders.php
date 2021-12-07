@@ -222,6 +222,7 @@ class Orders extends Component
         $data = [
             'order_id' => $order->id,
             'user_id' => $order->user_id,
+            'patient_id' => $order->patient_id
         ];
 
         $medicine = $order->medicine()->update($data);
