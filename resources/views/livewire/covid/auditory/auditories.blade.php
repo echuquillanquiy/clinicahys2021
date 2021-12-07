@@ -82,7 +82,7 @@
                                 <td class="text-center">
                                     @can('Auditoria_print')
                                         @if($order->medicine->temperature && $order->medicine->fc && $order->medicine->spo2 && $order->patient->image)
-                                            <a href="{{ route('historia', $order) }}" class="btn btn-outline-success" target="_blank"></a>
+                                            <a href="{{ route('historia', $order) }}" class="btn btn-outline-success" target="_blank"><i class="fas fa-file-archive"></i></a>
                                         @else
                                             <div>
                                                 <i class="text-info far fa-clock fa-2x"></i>
