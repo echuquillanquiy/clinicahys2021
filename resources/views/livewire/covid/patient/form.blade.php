@@ -101,6 +101,8 @@
         </div>
     </div>
 
+    <hr>
+
 </div>
 
 @include('common.modalFooter')
