@@ -174,7 +174,7 @@ class Orders extends Component
             'cardiovascular' => 'RUIDOS CARDIACOS RITMICOS, NORMOFONETICOS, AUSENCIA DE SOPLOS.',
             'torax' => 'MURMULLO VESICULAR PASA BIEN EN AMBOS CAMPOS PULMONARES, VIBRACIONES VOCALES CONSERVADAS, AUSENCIA DE RUIDOS AGREGADOS.',
             'printdx' => 'CLINICAMENTE SANO.',
-            'observations' => 'MEDIDAS PREVENTIVAS GENERALES (Lavado de manos, ditanciamiento físico, higiene respiratorio y uso de mascarilla)',
+            'observations' => 'MEDIDAS PREVENTIVAS GENERALES (Lavado de manos, distanciamiento físico, higiene respiratorio y uso de mascarilla)',
             'importance' => 1,
             'asymptomatic' => 1,
             'patient_id' => $order->patient_id,

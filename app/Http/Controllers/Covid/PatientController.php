@@ -51,7 +51,7 @@ class PatientController extends Controller
 
     public function exportResult()
     {
-        return (new FastExcel(Medicine::all()))->download('resultados.xlsx', function ($medicine) {
+        return (new FastExcel(Medicine::whereDate('created_at', Carbon::now()->format('Y-m-d'))->get()))->download('resultados.xlsx', function ($medicine) {
             return [
                 'Fecha de atención' => $medicine->created_at->format('Y-m-d'),
                 'Empresa' => $medicine->order->client->name,
