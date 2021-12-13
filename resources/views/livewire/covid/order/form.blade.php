@@ -83,6 +83,21 @@
         </div>
     @endif
 
+    {{--    <div class="col-xl-3">--}}
+    {{--        <div class="form-group">--}}
+    {{--            <label>SUBCONTRATA</label>--}}
+    {{--            <select wire:model.lazy="subclientId" class="form-control">--}}
+    {{--                <option value="">[Elegir]</option>--}}
+    {{--                @foreach($clients as $client)--}}
+    {{--                    <option value="{{ $client->id }}">{{ $client->name }}</option>--}}
+    {{--                @endforeach--}}
+    {{--            </select>--}}
+    {{--        </div>--}}
+    {{--        @error('subclientId')--}}
+    {{--        <span class="text-danger er">{{ $message }}</span>--}}
+    {{--        @enderror--}}
+    {{--    </div>--}}
+
     <div class="col-xl-6">
         <div class="form-group">
             <label>EMPRESAS</label>
@@ -96,21 +111,6 @@
             <span class="text-danger er">{{ $message }}</span>
         @enderror
     </div>
-
-{{--    <div class="col-xl-3">--}}
-{{--        <div class="form-group">--}}
-{{--            <label>SUBCONTRATA</label>--}}
-{{--            <select wire:model.lazy="subclientId" class="form-control">--}}
-{{--                <option value="">[Elegir]</option>--}}
-{{--                @foreach($clients as $client)--}}
-{{--                    <option value="{{ $client->id }}">{{ $client->name }}</option>--}}
-{{--                @endforeach--}}
-{{--            </select>--}}
-{{--        </div>--}}
-{{--        @error('subclientId')--}}
-{{--        <span class="text-danger er">{{ $message }}</span>--}}
-{{--        @enderror--}}
-{{--    </div>--}}
 
     <div class="col-xl-3">
         <div class="form-group">

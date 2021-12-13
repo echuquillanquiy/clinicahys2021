@@ -91,7 +91,7 @@
         @enderror
     </div>
 
-    <div class="col-sm-6 mt-3">
+    <div class="col-sm-12 mt-3">
         <div class="form-group custom-file">
             <input type="file" class="custom-file-input form-control" wire:model="image" accept="image/png, image/gif, image/jpeg">
             <label class="custom-file-label">Imágen {{ $image }}</label>
@@ -102,6 +102,51 @@
     </div>
 
     <hr>
+
+    @if($selected_id < 1)
+        <div class="col-xl-6">
+            <div class="form-group">
+                <label>EMPRESAS</label>
+                <select wire:model.lazy="clientId" class="form-control">
+                    @foreach($clients as $client)
+                        <option value="{{ $client->id }}" selected>{{ $client->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            @error('clientId')
+            <span class="text-danger er">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="col-xl-3">
+            <div class="form-group">
+                <label>PUESTOS</label>
+                <select wire:model.lazy="positionId" class="form-control">
+                    <option>Seleccione</option>
+                    @foreach($positions as $position)
+                        <option value="{{ $position->id }}" selected>{{ $position->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            @error('positionId')
+            <span class="text-danger er">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="col-xl-3">
+        <div class="form-group">
+            <label>PRUEBA</label>
+            <select wire:model.lazy="testId" class="form-control">
+                @foreach($tests as $test)
+                    <option value="{{ $test->id }}" selected>{{ $test->lot }}</option>
+                @endforeach
+            </select>
+        </div>
+        @error('testId')
+        <span class="text-danger er">{{ $message }}</span>
+        @enderror
+    </div>
+    @endif
 
 </div>
 
