@@ -183,8 +183,8 @@
 
 </div>
 
-
-<div style="margin-top: 30px">
+@if($order->laboratory->result == 'NO APLICA')
+    <div style="margin-top: 30px">
     <table style="width: 100%">
         <tr>
             <th>
@@ -298,3 +298,4 @@
 
     </table>
 </div>
+@endif
