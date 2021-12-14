@@ -154,7 +154,7 @@
 
         <tr style="text-align: center">
             <td style="padding-top: 0.6rem">SI @if($order->medicine->result == 'SI') (X) @endif</td>
-            <td>NO ( ) @if($order->medicine->result == 'NO') (X) @endif</td>
+            <td>NO @if($order->medicine->result == 'NO') (X) @endif</td>
         </tr>
     </table>
 
@@ -262,8 +262,10 @@
         <tr>
             @if($order->laboratory->result == 'POSITIVO')
                 <th>REACTIVO / POSITIVO ( X )</th>
-            @else
+            @elseif($order->laboratory->result == 'NEGATIVO')
                 <th>NO REACTIVO / NEGATIVO ( X )</th>
+            @else
+                <th>NO APLICA ( X )</th>
             @endif
 
         </tr>
