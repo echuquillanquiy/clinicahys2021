@@ -5,9 +5,9 @@
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
-                        <div class="hero-slides-content">
-                            <h2 data-animation="fadeInUp" data-delay="100ms">"Trabajo con Salud"</h2>
-                            <h6 data-animation="fadeInUp" data-delay="400ms">Red de clínicas H&S OCCUPATIONAL</h6>
+                        <div class="hero-slides-content text-center">
+                            <h2 data-animation="fadeInUp" data-delay="100ms">RED DE CLINICAS</h2>
+                            <h2 data-animation="fadeInUp" data-delay="400ms">H&S OCCUPATIONAL</h2>
                         </div>
                     </div>
                 </div>
@@ -20,9 +20,9 @@
                     <div class="row h-100 align-items-center">
                         <div class="col-12">
                             <div class="hero-slides-content">
-                                <h2 data-animation="fadeInUp" data-delay="100ms">{{ $place->name }}</h2>
-                                <h3 data-animation="fadeInUp" data-delay="400ms">{{ $place->email }} <br> {{ $place->phone }}
-                                    <br> {{ $place->address }}</h3>
+                                <h3 data-animation="fadeInUp" data-delay="100ms">Correo: {{ $place->name }}</h3>
+                                <h4 data-animation="fadeInUp" data-delay="400ms">{{ $place->email }} <br> Celular: {{ $place->phone }}
+                                    <br> Dirección: {{ $place->address }}</h4>
                             </div>
                         </div>
                     </div>

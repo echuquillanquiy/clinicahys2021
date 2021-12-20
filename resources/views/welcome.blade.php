@@ -106,7 +106,12 @@
                                     <!-- Single Contact Info -->
                                     <div class="single-contact-info mb-30">
                                         <img src="{{ asset('principal/img/icons/alarm-clock.png') }}" alt="">
-                                        <p>Lunes - Sabado<br>Domingo Cerrado</p>
+                                        <p>Lunes a Viernes  7:30 a.m. - 17:00 p.m.
+                                            <br>
+                                            Sábado 07:30 a.m. - 13:00 p.m.
+                                            <br>
+                                            Domingo Cerrado
+                                        </p>
                                     </div>
                                     <!-- Single Contact Info -->
                                     <div class="single-contact-info mb-30">
