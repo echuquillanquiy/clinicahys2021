@@ -7,7 +7,7 @@
                 <div class="col-12 col-sm-6 col-xl-3">
                     <div class="footer-widget-area">
                         <div class="footer-logo">
-                            <img src="{{ asset('principal/img/core-img/logo.png') }}" alt="">
+                            <img src="{{ asset('img/home/logo_portada.png') }}" alt="">
                         </div>
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer.</p>
                         <div class="footer-social-info">
