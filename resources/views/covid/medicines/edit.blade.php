@@ -14,7 +14,7 @@
 
     @if (session('notification'))
         <div class="alert alert-success mt-1 mb-0" role="alert">
-            <span class="alert-icon"><i class="ni ni-curved-next"></i></span>
+            <span class="alert-icon"><i class="fas fa-check-double"></i></span>
             {{ session('notification') }}
         </div>
     @endif
@@ -241,9 +241,6 @@
                                 <a href="{{ route('atenciones.medicina') }}" class="btn btn-danger btn-block">REGRESAR</a>
                             </div>
                         </div>
-
-
-
                 </form>
             </div>
         </div>
