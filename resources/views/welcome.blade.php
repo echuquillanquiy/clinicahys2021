@@ -184,11 +184,10 @@
 
     <!-- ***** Blog Area Start ***** -->
     <div class="container-fluid mt-50 mb-50">
-        <div class="row ml-5">
+        <div class="row">
             <!-- Single Blog Area -->
             @foreach($places as $place)
-
-                <div class="col-2 mr-5">
+                <div class="col-12 col-lg-2">
 
                     <a href="{{ $place->url }}" target="_blank">
                         <img class="image-full" src="{{ $place->image }}" alt="{{ $place->name }}">
