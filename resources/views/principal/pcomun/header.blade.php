@@ -54,7 +54,7 @@
                                     </li>
                                 </ul>
                                 <!-- Appointment Button -->
-                                <a href="{{ route('login') }}" class="btn medilife-appoint-btn mr-2">Ingresar</a>
+                                <a href="{{ route('login') }}" class="btn medilife-appoint-btn mr-2">Ingreso Covid-19</a>
                             </div>
                         </nav>
                     </div>
