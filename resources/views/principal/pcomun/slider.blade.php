@@ -14,7 +14,7 @@
             </div>
         </div>
         <!-- Single Hero Slide -->
-        @foreach($places as$place)
+        @foreach($places as $place)
             <div class="single-hero-slide bg-img bg-overlay-white" style="background-image: url({{ $place->image }});">
                 <div class="container h-100">
                     <div class="row h-100 align-items-center">
