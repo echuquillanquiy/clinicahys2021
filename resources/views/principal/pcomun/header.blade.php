@@ -41,16 +41,16 @@
                                         </div>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="">Nosotros</a>
+                                        <a class="nav-link" href="#">Nosotros</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="">Servicios</a>
+                                        <a class="nav-link" href="#">Servicios</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="">Contacto</a>
+                                        <a class="nav-link" href="#">Contacto</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link " href="">Acceso Clientes</a>
+                                        <a class="nav-link " href="http://clientes.clinicahys.com:8021">Acceso Clientes</a>
                                     </li>
                                 </ul>
                                 <!-- Appointment Button -->

@@ -191,9 +191,10 @@
 
                     <a href="{{ $place->url }}" target="_blank">
                         <img class="image-full" src="{{ $place->image }}" alt="{{ $place->name }}">
+                        <h4 class="text-center">{{ $place->name }}</h4>
                     </a>
 
-                    <h4 class="text-center">{{ $place->name }}</h4>
+
                 </div>
 
             @endforeach
