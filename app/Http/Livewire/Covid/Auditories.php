@@ -38,7 +38,7 @@ class Auditories extends Component
                 ->where('pat.origin', 'LIKE', 'HUANCAYO')
                 ->whereDate('orders.created_at', 'LIKE', $this->dateFilter)
                 ->where('pat.lastname', 'LIKE', '%' . $this->search . '%')
-                ->orderBy('id', 'asc')
+                ->orderBy('id', 'desc')
                 ->paginate($this->pageSelected);
         } elseif ($placeuser == "HUANCAVELICA") {
             $orders = Order::join('patients as pat', 'pat.id', 'orders.patient_id')
@@ -46,7 +46,7 @@ class Auditories extends Component
                 ->whereDate('orders.created_at', 'LIKE', $this->dateFilter)
                 ->where('pat.origin', 'LIKE', 'HUANCAVELICA')
                 ->where('pat.lastname', 'LIKE', '%' . $this->search . '%')
-                ->orderBy('id', 'asc')
+                ->orderBy('id', 'desc')
                 ->paginate($this->pageSelected);
         } elseif ($placeuser == "LIMA") {
             $orders = Order::join('patients as pat', 'pat.id', 'orders.patient_id')
@@ -54,7 +54,7 @@ class Auditories extends Component
                 ->whereDate('orders.created_at', 'LIKE', $this->dateFilter)
                 ->where('pat.origin', 'LIKE', 'LIMA')
                 ->where('pat.lastname', 'LIKE', '%' . $this->search . '%')
-                ->orderBy('id', 'asc')
+                ->orderBy('id', 'desc')
                 ->paginate($this->pageSelected);
         } elseif ($placeuser == "PASCO") {
             $orders = Order::join('patients as pat', 'pat.id', 'orders.patient_id')
@@ -62,14 +62,14 @@ class Auditories extends Component
                 ->whereDate('orders.created_at', 'LIKE', $this->dateFilter)
                 ->where('pat.origin', 'LIKE', 'PASCO')
                 ->where('pat.lastname', 'LIKE', '%' . $this->search . '%')
-                ->orderBy('id', 'asc')
+                ->orderBy('id', 'desc')
                 ->paginate($this->pageSelected);
         }else {
             $orders = Order::join('patients as pat', 'pat.id', 'orders.patient_id')
                 ->select('orders.*', 'pat.origin as procedencia', 'orders.created_at as fecha')
                 ->whereDate('orders.created_at', 'LIKE', $this->dateFilter)
                 ->where('pat.lastname', 'LIKE', '%' . $this->search . '%')
-                ->orderBy('id', 'asc')
+                ->orderBy('id', 'desc')
                 ->paginate($this->pageSelected);
         }
 
