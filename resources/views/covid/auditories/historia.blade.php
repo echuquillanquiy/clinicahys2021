@@ -65,11 +65,6 @@
         <tr style="align-items: center">
             <td><strong>2.- ANTECEDES PERSONALES / FAMILIARES</strong></td>
             <td style="text-align: right"><strong>SIN IMPORTANCIA</strong></td>
-            @if($order->medicine->importance == 0)
-                <td><input type="checkbox"></td>
-            @else
-                <td><input type="checkbox" checked></td>
-            @endif
         </tr>
     </table>
 
@@ -85,12 +80,6 @@
     <table style="width: 100%; font-size: 0.9rem; background-color: #acb0c3; margin-top: 3px">
         <tr>
             <td><strong>3.- ANAMNESIS</strong></td>
-            <td style="text-align: right"><strong>ASINTOMATICO</strong></td>
-            @if($order->medicine->asymptomatic == 0)
-                <td><input type="checkbox"></td>
-            @else
-                <td><input type="checkbox" checked></td>
-            @endif
         </tr>
     </table>
 
