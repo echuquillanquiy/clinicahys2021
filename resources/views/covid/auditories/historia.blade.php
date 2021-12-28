@@ -64,7 +64,6 @@
     <table style="width: 100%; font-size: 0.9rem; background-color: #acb0c3; margin-top: 5px">
         <tr style="align-items: center">
             <td><strong>2.- ANTECEDES PERSONALES / FAMILIARES</strong></td>
-            <td style="text-align: right"><strong>SIN IMPORTANCIA</strong></td>
         </tr>
     </table>
 
